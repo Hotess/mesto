@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 282px);
 	margin: 36px 19px 48px;
-	grid-row-gap: 20px;
+	grid-gap: 20px;
 }
 
 @media (min-width: 1280px) {
