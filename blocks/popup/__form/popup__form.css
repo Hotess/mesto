@@ -1,6 +1,6 @@
 .popup__form {
 	box-sizing: border-box;
-	padding: 36px;
+	padding: 15px 36px;
 	background-color: white;
 	width: calc(100% - 30px);
 	border-radius: 10px;
@@ -10,5 +10,6 @@
 @media (min-width: 1280px) {
 	.popup__form {
 		width: calc(100% - 50px);
+		padding: 36px;
 	}
 }
