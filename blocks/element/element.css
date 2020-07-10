@@ -1,0 +1,22 @@
+@import url("./__img/element__img.css");
+@import url("./__item/element__item.css");
+@import url("./__text/element__text.css");
+@import url("./__group/element__group.css");
+
+.element {
+	background-color: white;
+	border-radius: 10px;
+	transition: all .1s ease;
+}
+
+.element:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	box-shadow: 0 0 50px black;
+}
+
+@media (min-width: 1280px) {
+	.element:hover {
+		transform: scale(1.2);
+	}
+}

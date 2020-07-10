@@ -1,0 +1,17 @@
+.profile__working {
+	color: white;
+	font-size: 14px;
+	line-height: 17px;
+	margin: 0;
+	justify-self: center;
+	grid-column: 2 span;
+}
+
+@media (min-width: 1280px) {
+	.profile__working {
+		font-size: 18px;
+		line-height: 22px;
+		justify-self: start;
+		align-self: start;
+	}
+}

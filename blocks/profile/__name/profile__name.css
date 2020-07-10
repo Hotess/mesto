@@ -1,0 +1,15 @@
+.profile__name {
+	color: white;
+	line-height: 56px;
+	font-size: 27px;
+	font-weight: 500;
+	font-family: "Inter-Medium";
+	margin: 0;
+	justify-self: center;
+}
+
+@media (min-width: 1280px) {
+	.profile__name {
+		font-size: 42px;
+	}
+}

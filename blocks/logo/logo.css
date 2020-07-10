@@ -1,0 +1,12 @@
+.logo {
+	width: 104px;
+	padding-bottom: 31px;
+	margin-left: 27px;
+}
+
+@media (min-width: 1280px) {
+	.logo {
+		width: auto;
+		padding-bottom: 40px;
+	}
+}

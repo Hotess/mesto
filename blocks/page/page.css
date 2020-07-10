@@ -1,0 +1,14 @@
+.page {
+	width: 320px;
+	padding-top: 28px;
+	padding-bottom: 36px;
+}
+
+@media (min-width: 1280px) {
+	.page {
+		margin: 0 auto;
+		width: 882px;
+		padding-top: 45px;
+		padding-bottom: 60px;
+	}
+}

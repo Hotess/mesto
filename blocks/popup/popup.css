@@ -1,0 +1,20 @@
+@import url("./__close/popup__close.css");
+@import url("./__form/popup__form.css");
+@import url("./__title/popup__title.css");
+@import url("./__item/popup__item.css");
+@import url("./__submit/popup__submit.css");
+
+.popup {
+	display: none;
+	width: 300px;
+	position: fixed;
+	top: 195px;
+	left: 25px;
+}
+
+@media (min-width: 1280px) {
+	.popup {
+		width: 480px;
+		left: 425px;
+	}
+}

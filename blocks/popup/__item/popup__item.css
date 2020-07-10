@@ -1,0 +1,8 @@
+.popup__item {
+	border: 0;
+	border-bottom: 1px solid rgba(0,0,0, .2);
+	padding-top: 30px;
+	padding-bottom: 14px;
+	width: 99%;
+	outline: none;
+}
