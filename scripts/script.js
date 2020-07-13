@@ -11,16 +11,19 @@ let popupAboutU = document.querySelector('.popup__item_about-u');
 let profileName = document.querySelector('.profile__name');
 let profileWorking = document.querySelector('.profile__working');
 
+//Открытие попапа
 function openPopup() {
 	popup.classList.toggle('popup_opened');
 	popupName.value = profileName.textContent;
 	popupAboutU.value = profileWorking.textContent;
 }
 
+//закрытие попапа
 function closePopup() {
 	popup.classList.remove('popup_opened');
 }
 
+//данные, введеные в попапе
 function editPopup() {
 	event.preventDefault();
 	
