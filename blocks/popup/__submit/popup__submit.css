@@ -2,13 +2,13 @@
 	background: black;
 	width: 200px;
 	height: 45px;
-	margin-top: 50px;
+	margin-top: 35px;
 	outline: none;
 	border: 0;
 	border-radius: 2px;
 	transition: opacity .1s ease;
 	color: white;
-	
+	padding: 0;
 }
 
 .popup__submit:hover {
@@ -22,5 +22,6 @@
 		height: 50px;
 		font-size: 18px;
 		line-height: 22px;
+		margin-top: 50px;
 	}
 }

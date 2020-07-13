@@ -3,9 +3,11 @@
 	justify-self: center;
 	transition: opacity .1s ease;
 	border: 2px solid #FFFFFF;
-	box-sizing: border-box;
 	border-radius: 2px;
-	padding: 17px 134px;
+	padding: 13px 131px;
+	user-select: none;
+	background-color: rgba(0,0,0, 0);
+	outline: none;
 }
 
 .profile__add-button:hover {
@@ -17,6 +19,7 @@
 	.profile__add-button {
 		margin-top: 30px;
 		justify-self: end;
-		padding: 14px 64px;
+		padding: 14px 65px;
+		height: 50px;
 	}
 }

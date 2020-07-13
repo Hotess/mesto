@@ -2,19 +2,23 @@
 @import url("./__form/popup__form.css");
 @import url("./__title/popup__title.css");
 @import url("./__item/popup__item.css");
+@import url("./__item/_name/popup__item_name.css");
+@import url("./__item/_about-u/popup__item_about-u.css");
 @import url("./__submit/popup__submit.css");
+@import url("./__submit-text/popup__submit-text.css");
 
 .popup {
 	display: none;
 	width: 300px;
 	position: fixed;
-	top: 195px;
-	left: 25px;
+	top: 37vh;
+	left: calc(50vw - 144px);
 }
 
 @media (min-width: 1280px) {
 	.popup {
 		width: 480px;
-		left: 40%;
+		left: calc(50vw - 230px);
+		top: 25vh;
 	}
 }

@@ -1,16 +1,14 @@
 .popup__close {
 	align-self: flex-end;
 	transition: opacity .1s ease;
-	width: 40px;
+	background-color: rgba(0,0,0, 0);
+	outline: none;
+	border: 0;
+	user-select: none;
+	padding: 0;
 }
 
 .popup__close:hover {
 	cursor: pointer;
 	opacity: .6;
-}
-
-@media (min-width: 1280px) {
-	.popup__close {
-		width: auto;
-	}
 }
