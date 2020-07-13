@@ -5,7 +5,6 @@
 @import url("./__item/_name/popup__item_name.css");
 @import url("./__item/_about-u/popup__item_about-u.css");
 @import url("./__submit/popup__submit.css");
-@import url("./__submit-text/popup__submit-text.css");
 
 .popup {
 	display: none;
