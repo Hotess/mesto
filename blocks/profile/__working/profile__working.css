@@ -5,6 +5,11 @@
 	margin: 0;
 	justify-self: center;
 	grid-column: 2 span;
+	justify-self: center;
+	text-overflow: ellipsis;
+	max-width: 360px;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 @media (min-width: 1280px) {
@@ -13,5 +18,6 @@
 		line-height: 22px;
 		justify-self: start;
 		align-self: start;
+		max-width: 500px;
 	}
 }

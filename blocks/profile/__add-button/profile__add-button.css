@@ -1,12 +1,13 @@
 .profile__add-button {
+	background: url("./../../../../images/add-button.svg") no-repeat;
+	background-position: center;
 	margin-top: 36px;
 	justify-self: center;
 	transition: opacity .1s ease;
 	border: 2px solid #FFFFFF;
 	border-radius: 2px;
-	padding: 13px 131px;
+	padding: 23px 139px;
 	user-select: none;
-	background-color: rgba(0,0,0, 0);
 	outline: none;
 }
 
@@ -19,7 +20,7 @@
 	.profile__add-button {
 		margin-top: 30px;
 		justify-self: end;
-		padding: 14px 65px;
+		padding: 14px 73px;
 		height: 50px;
 	}
 }

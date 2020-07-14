@@ -11,7 +11,7 @@ let popupAboutU = document.querySelector('.popup__item_about-u');
 let profileName = document.querySelector('.profile__name');
 let profileWorking = document.querySelector('.profile__working');
 
-//Открытие попапа
+//Открытие/закрытие кнопкой-редактор попап
 function openPopup() {
 	popup.classList.toggle('popup_opened');
 	popupName.value = profileName.textContent;
@@ -24,7 +24,7 @@ function closePopup() {
 }
 
 //данные, введеные в попапе
-function editPopup() {
+function editPopup(event) {
 	event.preventDefault();
 	
 	profileName.textContent = popupName.value;

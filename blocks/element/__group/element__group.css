@@ -1,9 +1,11 @@
 .element__group {
+	background: url("./../../../../images/like.svg") no-repeat;
+	width: 21px;
+	height: 19px;
 	transition: opacity .1s ease;
 	user-select: none;
 	border: 0;
 	outline: 0;
-	background-color: rgba(0,0,0, 0);
 	padding: 0;
 }
 

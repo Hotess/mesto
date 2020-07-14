@@ -9,15 +9,3 @@
 	transition: all .1s ease;
 	overflow: hidden;
 }
-
-.element:hover {
-	cursor: pointer;
-	transform: scale(1.1);
-	box-shadow: 0 0 50px black;
-}
-
-@media (min-width: 1280px) {
-	.element:hover {
-		transform: scale(1.2);
-	}
-}
