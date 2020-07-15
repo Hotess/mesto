@@ -1,5 +1,5 @@
 .element__group {
-	background: url("./../../../../images/like.svg") no-repeat;
+	background: url("./../../../images/like.svg") no-repeat;
 	width: 21px;
 	height: 19px;
 	transition: opacity .1s ease;

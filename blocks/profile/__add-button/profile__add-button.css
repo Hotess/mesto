@@ -1,5 +1,5 @@
 .profile__add-button {
-	background: url("./../../../../images/add-button.svg") no-repeat;
+	background: url("./../../../images/add-button.svg") no-repeat;
 	background-position: center;
 	margin-top: 36px;
 	justify-self: center;
