@@ -2,8 +2,6 @@
 @import url("./__form/popup__form.css");
 @import url("./__title/popup__title.css");
 @import url("./__item/popup__item.css");
-@import url("./__item/_name/popup__item_name.css");
-@import url("./__item/_about-u/popup__item_about-u.css");
 @import url("./__submit/popup__submit.css");
 
 .popup {
@@ -15,5 +13,5 @@
 	top: 0;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0,0,0, .7);
+	background-color: rgba(0,0,0, .15);
 }

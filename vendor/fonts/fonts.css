@@ -5,14 +5,14 @@
 }
 
 @font-face {
-	font-family: "Inter-Black";
+	font-family: "Inter";
 	font-weight: 900;
 	src: url("./../fonts/Inter/Inter-Black.woff2") format("woff2"),
        url("./../fonts/Inter/Inter-Black.woff") format("woff");
 }
 
 @font-face {
-	font-family: "Inter-Medium";
+	font-family: "Inter";
 	font-weight: 500;
 	src: url("./../fonts/Inter/Inter-Medium.woff2") format("woff2"),
        url("./../fonts/Inter/Inter-Medium.woff") format("woff");

@@ -19,11 +19,11 @@
 					<img src="./images/Pavel.png" alt="Аватарка" class="profile__avatar">
 					<div class="profile__info">
 						<h1 class="profile__name">Павел Ополовнин</h1>
-						<button type="button" class="profile__edit-button">
+						<button type="button" aria-label="кнопка-редактирования" class="profile__edit-button">
 						</button>
 						<p class="profile__working">Исследователь лени</p>
 					</div>
-					<button type="button" class="profile__add-button">
+					<button type="button" aria-label="кнопка-добавления" class="profile__add-button">
 					</button>
 				</section>
 				<section class="elements">
@@ -31,42 +31,42 @@
 						<img src="./images/img-1.jpg" alt="Карачаевск" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Карачаевск</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__group"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-2.jpg" alt="Гора Эльбрус" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Гора Эльбрус</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__group"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-3.jpg" alt="Домбай" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Домбай</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__group"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-2.jpg" alt="Гора Эльбрус" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Гора Эльбрус</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__group"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-3.jpg" alt="Домбай" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Домбай</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__group"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-1.jpg" alt="Карачаево-Черкесии" class="element__img">
 						<div class="element__item">
 							<h2 class="element__text">Карачаево-Черкесии</h2>
-							<button type="button" class="element__group"></button>
+							<button type="button" aria-label="лайк" class="element__group"></button>
 						</div>
 					</article>
 				</section>
@@ -76,12 +76,12 @@
 			</footer>
 		</div>
 		<div class="popup">
-			<button type="button" class="popup__close"></button>
+			<button type="button" aria-label="закрыть попап" class="popup__close"></button>
 			<form method="post" name="popup__form" class="popup__form">
 				<h2 class="popup__title">Редактировать профиль</h2>
 				<input type="text" name="popup__name" placeholder="Ваше имя" class="popup__item popup__item_name" required />
 				<input type="text" name="popup__about-u" placeholder="Расскажите о себе" class="popup__item popup__item_about-u" required />
-				<button type="submit" class="popup__submit">Сохранить</button>
+				<button type="submit" aria-labelledby="сохранить" class="popup__submit">Сохранить</button>
 			</form>
 		</div>
 		<script src="./scripts/script.js"></script>
