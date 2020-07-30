@@ -84,7 +84,6 @@ function openElemImg(event) {
 		
 		templeteImg.src = event.target.src;
 		templeteText.textContent = element.querySelector('.element__text').textContent;
-		console.log(element);
 		    
 		page.prepend(templateModal);
 	}	
