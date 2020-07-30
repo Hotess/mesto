@@ -1,0 +1,17 @@
+@import url("./__close/template-modal__close.css");
+@import url("./__view/template-modal__view-img.css");
+@import url("./__img/template-modal__img.css");
+@import url("./__text/template-modal__text.css");
+
+.template-modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0, .8);
+}

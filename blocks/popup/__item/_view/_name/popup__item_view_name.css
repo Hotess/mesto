@@ -1,0 +1,9 @@
+.popup__item_view_name {
+	padding-top: 54px;
+}
+
+@media (min-width: 1280px) {
+	.popup__item_view_name {
+		padding-top: 36px;
+	}
+}

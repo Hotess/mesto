@@ -3,9 +3,13 @@
 @import url("./__title/popup__title.css");
 @import url("./__item/popup__item.css");
 @import url("./__submit/popup__submit.css");
+@import url("./__item/_view/_name/popup__item_view_name.css");
+@import url("./__item/_view/_about-u/popup__item_view_about-u.css");
 
 .popup {
-	display: none;
+	visibility: hidden;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -14,4 +18,6 @@
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(0,0,0, .5);
+	transition: all .2s ease-in-out;
+	opacity: 0;
 }

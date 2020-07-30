@@ -29,44 +29,50 @@
 				<section class="elements">
 					<article class="element">
 						<img src="./images/img-1.jpg" alt="Карачаевск" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Карачаевск</h2>
-							<button type="button" aria-label="лайк"  class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__like"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-2.jpg" alt="Гора Эльбрус" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Гора Эльбрус</h2>
-							<button type="button" aria-label="лайк"  class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__like"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-3.jpg" alt="Домбай" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Домбай</h2>
-							<button type="button" aria-label="лайк"  class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__like"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-2.jpg" alt="Гора Эльбрус" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Гора Эльбрус</h2>
-							<button type="button" aria-label="лайк"  class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__like"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-3.jpg" alt="Домбай" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Домбай</h2>
-							<button type="button" aria-label="лайк"  class="element__group"></button>
+							<button type="button" aria-label="лайк"  class="element__like"></button>
 						</div>
 					</article>
 					<article class="element">
 						<img src="./images/img-1.jpg" alt="Карачаево-Черкесии" class="element__img">
+						<button type="button" class="element__trash"></button>
 						<div class="element__item">
 							<h2 class="element__text">Карачаево-Черкесии</h2>
-							<button type="button" aria-label="лайк" class="element__group"></button>
+							<button type="button" aria-label="лайк" class="element__like"></button>
 						</div>
 					</article>
 				</section>
@@ -75,15 +81,43 @@
 				<p class="footer__text">&copy; 2020 Mesto Russia</p>
 			</footer>
 		</div>
-		<div class="popup">
-			<button type="button" aria-label="закрыть попап" class="popup__close"></button>
-			<form method="post" name="popup__form" class="popup__form">
+		<div class="popup popup__container-edit">
+			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-edit"></button>
+			<form method="post" name="popupForm" class="popup__form popup__form-edit">
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<input type="text" name="popup__name" placeholder="Ваше имя" class="popup__item popup__item_name" required />
-				<input type="text" name="popup__about-u" placeholder="Расскажите о себе" class="popup__item popup__item_about-u" required />
+				<input type="text" name="popupName" placeholder="Ваше имя" class="popup__item popup__item_view_name" required/>
+				<input type="text" name="popupAboutUs" placeholder="Расскажите о себе" class="popup__item popup__item_view_about-u" required/>
 				<button type="submit" class="popup__submit">Сохранить</button>
 			</form>
 		</div>
-		<script src="./scripts/script.js"></script>
+		<div class="popup popup__container-add">
+			<button type="button" aria-label="закрыть попап" class="popup__close popup__close popup_close-add"></button>
+			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form-add">
+				<h2 class="popup__title">Новое место</h2>
+				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__item popup__item-name-of-img" required/>
+				<input type="text" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__item popup__item-link-for-img" required/>
+				<button type="submit" class="popup__submit">Создать</button>
+			</form>
+		</div>
+		<template id="template-element">
+			<article class="element">
+				<img src="" alt="" class="element__img">
+				<button type="button" class="element__trash"></button>
+				<div class="element__item">
+					<h2 class="element__text"></h2>
+					<button type="button" aria-label="лайк" class="element__like"></button>
+				</div>
+			</article>
+		</template>
+		<template id="template-element-img">
+			<div class="template-modal">
+				<div class="template-modal__view-img">
+					<button type="button" aria-label="закрыть изображение" class="template-modal__close"></button>
+					<img src="" alt="" class="template-modal__img">
+					<p class="template-modal__text"></p>
+				</div>
+			</div>
+		</template>
+		<script src="./scripts/index.js"></script>
 	</body>
 </html>
