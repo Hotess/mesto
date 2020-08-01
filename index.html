@@ -19,11 +19,11 @@
 					<img src="./images/Pavel.png" alt="Аватарка" class="profile__avatar">
 					<div class="profile__info">
 						<h1 class="profile__name">Павел Ополовнин</h1>
-						<button type="button" aria-label="кнопка-редактирования" class="profile__edit-button">
+						<button type="button" aria-label="кнопка-редактирования" class="profile__edit-button profile_button">
 						</button>
 						<p class="profile__working">Исследователь лени</p>
 					</div>
-					<button type="button" aria-label="кнопка-добавления" class="profile__add-button">
+					<button type="button" aria-label="кнопка-добавления" class="profile__add-button profile_button">
 					</button>
 				</section>
 				<section class="elements">
@@ -91,17 +91,17 @@
 			</form>
 		</div>
 		<div class="popup popup__container-add">
-			<button type="button" aria-label="закрыть попап" class="popup__close popup__close popup_close-add"></button>
+			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-add"></button>
 			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form-add">
 				<h2 class="popup__title">Новое место</h2>
 				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__item popup__item-name-of-img" required/>
 				<input type="text" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__item popup__item-link-for-img" required/>
 				<button type="submit" class="popup__submit">Создать</button>
 			</form>
-		</div>
+		</div>   
 		<template id="template-element">
 			<article class="element">
-				<img src="" alt="" class="element__img">
+				<img src="#" alt="" class="element__img">
 				<button type="button" class="element__trash"></button>
 				<div class="element__item">
 					<h2 class="element__text"></h2>
@@ -113,11 +113,12 @@
 			<div class="template-modal">
 				<div class="template-modal__view-img">
 					<button type="button" aria-label="закрыть изображение" class="template-modal__close"></button>
-					<img src="" alt="" class="template-modal__img">
+					<img src="#" alt="" class="template-modal__img">
 					<p class="template-modal__text"></p>
 				</div>
 			</div>
 		</template>
-		<script src="./scripts/index.js"></script>
+		<script src="./scripts/popup.js"></script>
+		<script src="./scripts/initial-cards.js"></script>
 	</body>
 </html>
