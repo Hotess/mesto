@@ -95,7 +95,23 @@ function addImg(event) {
 
 	closePopup(event);
 };
+
+function addAutoSixCards() {
 	
+		
+	initialCards.forEach(item => {
+		const template = document.querySelector('#template-element').content.cloneNode(true);
+		const templateImgName = template.querySelector('.element__text');
+		const templateImgUrl = template.querySelector('.element__img');
+		
+		templateImgUrl.src = item.link;
+		templateImgName.textContent = item.name;
+		elements.prepend(template);
+	}); 
+};
+
+addAutoSixCards();
+
 body.addEventListener('click', openPopup);
 body.addEventListener('click', closePopup);
 body.addEventListener('submit', dataPopupEdit);
