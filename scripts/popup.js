@@ -28,6 +28,7 @@ let initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
 //Открытие попапа
 function openPopup(event) {
 	const popupEdit = document.querySelector('.popup_container_edit');
@@ -46,8 +47,8 @@ function openPopup(event) {
 			case 'profile__add-button': 
 				popupAdd.classList.add('popup_opened');
 			break;
-		}
-	}	   
+		};
+	};	   
 }
 		   
 //Закрытие попапа
