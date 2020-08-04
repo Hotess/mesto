@@ -4,7 +4,6 @@ const profile = document.querySelector('.profile');
 const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_container_edit');
 const popupAdd = document.querySelector('.popup_container_add');
-	
 const initialCards = [
     {
         name: 'Архыз',
@@ -67,40 +66,39 @@ function dataPopupEdit(event) {
 	}
 };
 
+//Создание templateImg
+function createImgTemplate(imgSrc, imgName) {
+	const template = document.querySelector('#template-element').content.cloneNode(true);
+	const templateElement = template.querySelector('.element');
+	const templateImgName = templateElement.querySelector('.element__text');
+	const templateImgUrl = templateElement.querySelector('.element__img');
+	
+	templateImgUrl.src = imgSrc;
+	templateImgName.textContent = imgName;
+	
+	return templateElement;
+}
+
 //Добавление изображения	
 function addImg(event) {
 	event.preventDefault();
 	
 	if (event.target.classList.contains('popup__form-add')) {
-		const template = document.querySelector('#template-element').content.cloneNode(true);
-		const templateImgName = template.querySelector('.element__text');
-		const templateImgUrl = template.querySelector('.element__img');
-
-		templateImgUrl.src = event.target.querySelector('.popup__item-link-for-img').value;
-		templateImgName.textContent = event.target.querySelector('.popup__item-name-of-img').value;
-		
 		initialCards.push({
-			name: templateImgName.textContent, 
-			link: templateImgUrl.src,
+			name: event.target.querySelector('.popup__item-name-of-img').value, 
+			link: event.target.querySelector('.popup__item-link-for-img').value,
 		});
 		
-		elements.prepend(template);
+		elements.prepend(createImgTemplate(event.target.querySelector('.popup__item-link-for-img').value, event.target.querySelector('.popup__item-name-of-img').value));
 	}
 
 	closePopup(event);
 };
 
 //Автоматическое добавление 6-ти карт
-function addAutoSixCards() {
+function addAutoSixCards(templateImgName, templateImgUrl) {
 	initialCards.forEach(item => {
-		const template = document.querySelector('#template-element').content.cloneNode(true);
-		const templateImgName = template.querySelector('.element__text');
-		const templateImgUrl = template.querySelector('.element__img');
-		
-		templateImgUrl.src = item.link;
-		templateImgName.textContent = item.name;
-		
-		elements.prepend(template);
+		elements.prepend(createImgTemplate(item.link, item.name));
 	}); 
 };
 
