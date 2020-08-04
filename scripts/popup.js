@@ -63,8 +63,6 @@ function dataPopupEdit(event) {
 		profile.querySelector('.profile__name').textContent = event.target.querySelector('.popup__item_view_name').value;
 		profile.querySelector('.profile__working').textContent = event.target.querySelector('.popup__item_view_about-u').value;
 		
-		console.log(profile.querySelector('.profile__name').textContent);
-		
 		closePopup(event);
 	}
 };
