@@ -5,7 +5,7 @@ const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_container_edit');
 const popupAdd = document.querySelector('.popup_container_add');
 	
-let initialCards = [
+const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -86,7 +86,6 @@ function addImg(event) {
 			link: templateImgUrl.src,
 		});
 		
-		console.log(initialCards);
 		elements.prepend(template);
 	}
 
@@ -102,6 +101,7 @@ function addAutoSixCards() {
 		
 		templateImgUrl.src = item.link;
 		templateImgName.textContent = item.name;
+		
 		elements.prepend(template);
 	}); 
 };
