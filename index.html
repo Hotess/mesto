@@ -35,20 +35,24 @@
 		</div>
 		<div class="popup popup_container_edit">
 			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-edit"></button>
-			<form method="post" name="popupForm" class="popup__form popup__form-edit">
+			<form method="post" name="popupForm" class="popup__form popup__form-edit" novalidate>
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<input type="text" name="popupName" placeholder="Ваше имя" class="popup__item popup__item_view_name" required/>
-				<input type="text" name="popupAboutUs" placeholder="Расскажите о себе" class="popup__item popup__item_view_about-u" required/>
-				<button type="submit" class="popup__submit">Сохранить</button>
+				<input type="text" name="popupName" placeholder="Ваше имя" class="popup__input popup__item_view_name" minlength="2" maxlength="40" required/>
+				<span id="popup__item_view_name-error" class="popup__input-error"></span>
+				<input type="text" name="popupAboutUs" placeholder="Расскажите о себе" class="popup__input popup__item_view_about-u" minlength="2" maxlength="200" required/>
+				<span id="popup__item_view_about-u-error" class="popup__input-error"></span>
+				<button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
 			</form>
 		</div>
 		<div class="popup popup_container_add">
 			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-add"></button>
-			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form-add">
+			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form-add" novalidate>
 				<h2 class="popup__title">Новое место</h2>
-				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__item popup__item-name-of-img" required/>
-				<input type="text" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__item popup__item-link-for-img" required/>
-				<button type="submit" class="popup__submit">Создать</button>
+				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__input popup__item-name-of-img" minlength="2" maxlength="30" required/>
+				<span id="popup__item-name-of-img-error" class="popup__input-error"></span>
+				<input type="url" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__input popup__item-link-for-img" required/>
+				<span id="popup__item-link-for-img-error" class="popup__input-error"></span>
+				<button type="submit" class="popup__button popup__button_disabled" disabled>Создать</button>
 			</form>
 		</div>   
 		<template id="template-element">
@@ -72,5 +76,6 @@
 		</template>
 		<script src="./scripts/popup.js"></script>
 		<script src="./scripts/initial-cards.js"></script>
+		<script src="./scripts/validate.js"></script>
 	</body>
 </html>

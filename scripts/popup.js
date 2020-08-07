@@ -1,7 +1,7 @@
 const body = document.querySelector('.body');
 const elements = document.querySelector('.elements');
 const profile = document.querySelector('.profile');
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_container_edit');
 const popupAdd = document.querySelector('.popup_container_add');
 const initialCards = [
@@ -33,7 +33,7 @@ const initialCards = [
 
 //Открытие попапа
 function openPopup(event) {
-	popup.forEach((item, index, array) => {
+	popups.forEach((item, index, array) => {
 		if (event.target.classList.contains('profile__edit-button')) {
 			array[0].classList.add('popup_opened');
 			
@@ -49,15 +49,26 @@ function openPopup(event) {
 		   
 //Закрытие попапа
 function closePopup(event) {
-	 if (event.target.classList.contains('popup__close') || event.target.classList.contains('popup__form')) {
+	 if (event.target.classList.contains('popup__close') || event.target.classList.contains('popup__button') || event.target.classList.contains('popup')) {
 		 event.target.closest('.popup').classList.remove('popup_opened');
 	 }
+	
+	closeKeyPopup();
 };
 
+//Закрытие попапа клавишей Escape
+function closeKeyPopup() {
+	popups.forEach(popupElement => {
+		document.addEventListener('keydown', function(event) {
+			if (event.keyCode == 27) {
+				popupElement.classList.remove('popup_opened');
+			}
+		});
+	});
+}
+
 //Данные, введёные в попап-редакторе, сохраняются в profile
-function dataPopupEdit(event) {
-	event.preventDefault();
-	
+function dataPopupEdit(event) {	
 	if (event.target.classList.contains('popup__form-edit')) {
 		profile.querySelector('.profile__name').textContent = event.target.querySelector('.popup__item_view_name').value;
 		profile.querySelector('.profile__working').textContent = event.target.querySelector('.popup__item_view_about-u').value;
@@ -81,14 +92,11 @@ function createImgTemplate(imgSrc, imgName) {
 
 //Добавление изображения	
 function addImg(event) {
-	event.preventDefault();
-	
 	if (event.target.classList.contains('popup__form-add')) {
 		initialCards.push({
 			name: event.target.querySelector('.popup__item-name-of-img').value, 
 			link: event.target.querySelector('.popup__item-link-for-img').value,
 		});
-		
 		elements.prepend(createImgTemplate(event.target.querySelector('.popup__item-link-for-img').value, event.target.querySelector('.popup__item-name-of-img').value));
 	}
 

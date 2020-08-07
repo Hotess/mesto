@@ -1,10 +1,10 @@
 @import url("./__close/popup__close.css");
 @import url("./__form/popup__form.css");
 @import url("./__title/popup__title.css");
-@import url("./__item/popup__item.css");
-@import url("./__submit/popup__submit.css");
-@import url("./__item/_view/_name/popup__item_view_name.css");
-@import url("./__item/_view/_about-u/popup__item_view_about-u.css");
+@import url("./__input/popup__input.css");
+@import url("./__button/popup__button.css");
+@import url('./__input-error/popup__input-error.css');
+@import url('./__input-error/_visble/popup__input-error_visble.css');
 
 .popup {
 	visibility: hidden;
