@@ -14,24 +14,29 @@ function templateImg(imgSrc, imgName) {
 	
 //Открытие/закрытие изображения
 function toggleImg(event) {
+	const pushCloseImg = event.target.classList.contains('template-modal__close') || event.target.classList.contains('template-modal');
+	let temlateComleted;
+	
 	if (event.target.classList.contains('element__img')) {
-		body.prepend(templateImg(event.target.src, event.target.closest('.element').querySelector('.element__text').textContent));
+		temlateComleted = templateImg(event.target.src, event.target.closest('.element').querySelector('.element__text').textContent);
 		
-	} else if (event.target.classList.contains('template-modal__close') || event.target.classList.contains('template-modal')) {
+		body.prepend(temlateComleted);
+		
+	} else if (pushCloseImg) {
 		event.target.closest('.body').querySelector('.template-modal').remove();
 	};
+	
+	document.addEventListener('keydown', closeKeyImg);
 }; 
 	
 //Закрытие изображение клавишей Escape
-function closeKeyImg() {
-	document.addEventListener('keydown', function(event) {
-		if (event.keyCode == 27 ) {
-			document.querySelector('.template-modal').remove();
-		}
-	});
+function closeKeyImg(event) {
+	const temlateCreated = document.querySelector('.template-modal');
+	
+	if (event.key == 'Escape' && temlateCreated) {
+		document.querySelector('.template-modal').remove();
+	}
 }
-
-closeKeyImg();
 
 //Поставить/отменить лайк 
 function toggleLike (event) {
@@ -47,6 +52,7 @@ function removeImg(event) {
 	}
 }; 
 	
-body.addEventListener('click', toggleImg);
-body.addEventListener('click', toggleLike);
-body.addEventListener('click', removeImg);
+document.addEventListener('click', toggleImg);
+document.addEventListener('click', toggleLike);
+document.addEventListener('click', removeImg);
+document.removeEventListener('keydown', closeKeyImg);

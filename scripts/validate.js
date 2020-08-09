@@ -1,26 +1,40 @@
+//Отмена ошибки после закрытия попапа
+function resetError(errorElement, objPopup) {
+	popups.forEach(popup => {
+		popup.addEventListener('click', event => {
+			if (event.target.classList.contains('popup__close')) {;
+				errorElement.textContent = '';
+				errorElement.classList.remove(`${objPopup.errorClass}`);
+			}
+		});
+	})
+}
+
 //Показ ошибки
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, objPopup) => {
 	const errorElement = formElement.querySelector(`#${inputElement.className.split(' ')[1]}-error`);
 	
-	errorElement.classList.add('popup__input-error_visble');
+	errorElement.classList.add(`${objPopup.errorClass}`);
 	errorElement.textContent = errorMessage;
+	
+	resetError(errorElement, objPopup);
 };
 
 //Скрыть ошибку 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, objPopup) => {
 	const errorElement = formElement.querySelector(`#${inputElement.className.split(' ')[1]}-error`);
 		
-	errorElement.classList.remove('popup__input-error_visble');
+	errorElement.classList.remove(`${objPopup.errorClass}`);
 	errorElement.textContent = '';
 };
 
 //Показ ошибки/скрыть ошибку при проверке валидации input
-const checkInputValidity = (formElement, inputElement, error) => {
+const checkInputValidity = (formElement, inputElement, objPopup) => {
 	if (!inputElement.validity.valid) {
-		showInputError(formElement, inputElement, inputElement.validationMessage);
+		showInputError(formElement, inputElement, inputElement.validationMessage, objPopup);
 		
 	} else {
-		hideInputError(formElement, inputElement);
+		hideInputError(formElement, inputElement, objPopup);
   	}
 };
 
@@ -32,43 +46,50 @@ const hasInvalidInput = (inputList) => {
 };
 
 //Доступ/запрет кнопки попапа
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, objPopup) => {
 	if (hasInvalidInput(inputList)) {
-		buttonElement.classList.add('popup__button_disabled');
+		buttonElement.classList.add(`${objPopup.inactiveButtonClass}`);
 		buttonElement.disabled = 'disabled';
 		
   	} else {
-	  	buttonElement.classList.remove('popup__button_disabled');
+	  	buttonElement.classList.remove(`${objPopup.inactiveButtonClass}`);
 	  	buttonElement.disabled = '';
   	}
 };
 
 //Присваивание слушателей inputs
-const setEventListeners = (formElement) => {
-	const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-	const buttonElement = formElement.querySelector('.popup__button');
+const setEventListeners = (formElement, objPopup) => {
+	const inputList = Array.from(formElement.querySelectorAll(`.${objPopup.inputSelector}`));
+	const buttonElement = formElement.querySelector(`.${objPopup.submitButtonSelector}`);
 
-	toggleButtonState(inputList, buttonElement);
+	toggleButtonState(inputList, buttonElement, objPopup);
 
 	inputList.forEach((inputElement) => {
-		inputElement.addEventListener('input', function () {		
-			checkInputValidity(formElement, inputElement);
-			toggleButtonState(inputList, buttonElement);
+		inputElement.addEventListener('input', function() {		
+			checkInputValidity(formElement, inputElement, objPopup);
+			toggleButtonState(inputList, buttonElement, objPopup);
 		});
 	});
 };
 
 //Включение Валидацию формы
-const enableValidation = () => {
-	const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (objPopup) => {
+	const formList = Array.from(document.querySelectorAll(`.${objPopup.formSelector}`));
 	
 	formList.forEach((formElement) => {
 		formElement.addEventListener('submit', function(event) {
 			event.preventDefault();
     	});
 		
-		setEventListeners(formElement);
+		setEventListeners(formElement, objPopup);
 	});
 };
 
-enableValidation();
+enableValidation({
+  formSelector: 'popup__form',
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_visible'
+});
