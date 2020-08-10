@@ -35,6 +35,8 @@ function closeKeyImg(event) {
 	
 	if (event.key == 'Escape' && temlateCreated) {
 		document.querySelector('.template-modal').remove();
+		
+		document.removeEventListener('keydown', closeKeyImg);
 	}
 }
 

@@ -58,9 +58,8 @@ const toggleButtonState = (inputList, buttonElement, objPopup) => {
 };
 
 //Присваивание слушателей inputs
-const setEventListeners = (formElement, objPopup) => {
+const setEventListeners = (formElement, buttonElement, objPopup) => {
 	const inputList = Array.from(formElement.querySelectorAll(`.${objPopup.inputSelector}`));
-	const buttonElement = formElement.querySelector(`.${objPopup.submitButtonSelector}`);
 
 	toggleButtonState(inputList, buttonElement, objPopup);
 
@@ -77,11 +76,15 @@ const enableValidation = (objPopup) => {
 	const formList = Array.from(document.querySelectorAll(`.${objPopup.formSelector}`));
 	
 	formList.forEach((formElement) => {
+		const buttonElement = formElement.querySelector(`.${objPopup.submitButtonSelector}`);
+		
 		formElement.addEventListener('submit', function(event) {
 			event.preventDefault();
+			
+			buttonElement.classList.add(`${objPopup.inactiveButtonClass}`);
     	});
 		
-		setEventListeners(formElement, objPopup);
+		setEventListeners(formElement, buttonElement, objPopup);
 	});
 };
 

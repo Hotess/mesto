@@ -26,37 +26,36 @@ function closePopup(event) {
 //Закрытие попапа клавишей Escape
 function closeKeyPopup(event) {
 	const popupOpened = document.querySelector('.popup_opened');
-	
 	if (event.key == 'Escape' && popupOpened) {
-		popupOpened.classList.remove('popup_opened');	
+		popupOpened.classList.remove('popup_opened');
+
+		document.removeEventListener('keydown', closeKeyPopup);
 	}
 };
 
 //Данные, введёные в попап-редакторе, сохраняются в profile
-function dataPopupEdit(event) {	
+function dataPopupEdit(event) {
 	if (event.target.classList.contains('popup__form-edit')) {
-		profile.querySelector('.profile__name').textContent = event.target.querySelector('.popup__item_view_name').value;
-		profile.querySelector('.profile__working').textContent = event.target.querySelector('.popup__item_view_about-u').value;
+		profileName.textContent = popupEditName.value;
+		profileWorking.textContent = popupEditAboutU.value;
 	}
 	
 	//Переменные name и working профиля присвоили значения в переменные name и working попапа
-	popupEdit.querySelector('.popup__item_view_name').value = profile.querySelector('.profile__name').textContent;
-	popupEdit.querySelector('.popup__item_view_about-u').value = profile.querySelector('.profile__working').textContent;
+	popupEditName.value = profileName.textContent;
+	popupEditAboutU.value = profileWorking.textContent;
 };
 
 //Добавление изображения	
 function addImg(event) {
 	if (event.target.classList.contains('popup__form-add')) {
-		const popupName = event.target.querySelector('.popup__item-name-of-img').value;
-		const popupLink = event.target.querySelector('.popup__item-link-for-img').value;
-		const templateCompleted = createImgTemplate(popupLink, popupName);
+		const templateCompleted = createImgTemplate(popupAddLink.value, popupAddName.value);
 		
-		event.target.querySelector('.popup__item-name-of-img').value = '';
-		event.target.querySelector('.popup__item-link-for-img').value = '';
+		popupAddName.value = '';
+		popupAddLink.value = '';
 		
 		initialCards.push({
-			name: popupName, 
-			link: popupLink,
+			name: popupAddName.value, 
+			link: popupAddLink.value,
 		});
 		
 		elements.prepend(templateCompleted);
@@ -67,4 +66,3 @@ document.addEventListener('click', openPopup);
 document.addEventListener('click', closePopup);
 document.addEventListener('submit', dataPopupEdit);
 document.addEventListener('submit', addImg);
-document.removeEventListener('keydown', closeKeyPopup);
