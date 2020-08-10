@@ -82,6 +82,7 @@ const enableValidation = (objPopup) => {
 			event.preventDefault();
 			
 			buttonElement.classList.add(`${objPopup.inactiveButtonClass}`);
+			buttonElement.disabled = 'disabled';
     	});
 		
 		setEventListeners(formElement, buttonElement, objPopup);

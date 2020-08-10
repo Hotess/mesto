@@ -4,6 +4,8 @@ const elements = document.querySelector('.elements');
 const profile = document.querySelector('.profile');
 const profileName = document.querySelector('.profile__name');
 const profileWorking = document.querySelector('.profile__working');
+const profileBtnEditPopup = document.querySelector('.profile__edit-button');
+const profileBtnAddPopup = document.querySelector('.profile__add-button');
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_container_edit');
 const popupEditName = document.querySelector('.popup__item_view_name');
@@ -11,6 +13,8 @@ const popupEditAboutU = document.querySelector('.popup__item_view_about-u');
 const popupAdd = document.querySelector('.popup_container_add');
 const popupAddName = document.querySelector('.popup__item-name-of-img');
 const popupAddLink = document.querySelector('.popup__item-link-for-img');
+const popupAddBtnClose = document.querySelector('.popup_close-add');
+const popupEditBtnClose = document.querySelector('.popup_close-edit');
 const initialCards = [
     {
         name: 'Архыз',

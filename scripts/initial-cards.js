@@ -20,13 +20,15 @@ function toggleImg(event) {
 	if (event.target.classList.contains('element__img')) {
 		temlateComleted = templateImg(event.target.src, event.target.closest('.element').querySelector('.element__text').textContent);
 		
+		document.addEventListener('keydown', closeKeyImg);
+		
 		body.prepend(temlateComleted);
 		
 	} else if (pushCloseImg) {
 		event.target.closest('.body').querySelector('.template-modal').remove();
+		
+		document.removeEventListener('keydown', closeKeyImg);
 	};
-	
-	document.addEventListener('keydown', closeKeyImg);
 }; 
 	
 //Закрытие изображение клавишей Escape
@@ -35,8 +37,6 @@ function closeKeyImg(event) {
 	
 	if (event.key == 'Escape' && temlateCreated) {
 		document.querySelector('.template-modal').remove();
-		
-		document.removeEventListener('keydown', closeKeyImg);
 	}
 }
 
@@ -57,4 +57,3 @@ function removeImg(event) {
 document.addEventListener('click', toggleImg);
 document.addEventListener('click', toggleLike);
 document.addEventListener('click', removeImg);
-document.removeEventListener('keydown', closeKeyImg);

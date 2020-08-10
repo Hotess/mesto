@@ -1,41 +1,28 @@
 //Открытие попапа
-function openPopup(event) {
-	popups.forEach((item, index, array) => {
-		if (event.target.classList.contains('profile__edit-button')) {
-			array[0].classList.add('popup_opened');
-			
-			dataPopupEdit(event);
-
-		} else if (event.target.classList.contains('profile__add-button')) {
-			array[1].classList.add('popup_opened');		   
-		};
-	});
-	
+const openPopup = function(popup) {
+	popup.classList.add('popup_opened');	
 	document.addEventListener('keydown', closeKeyPopup);
 };
 		   
 //Закрытие попапа
-function closePopup(event) {
-	const pushClosePopup = event.target.classList.contains('popup__close') || event.target.classList.contains('popup__button') || event.target.classList.contains('popup');
-	
-	 if (pushClosePopup) {
-		 event.target.closest('.popup').classList.remove('popup_opened');
-	 }
+function closePopup(popup) {
+	popup.classList.remove('popup_opened');
+	document.removeEventListener('keydown', closeKeyPopup);
 };
 
 //Закрытие попапа клавишей Escape
 function closeKeyPopup(event) {
 	const popupOpened = document.querySelector('.popup_opened');
 	if (event.key == 'Escape' && popupOpened) {
-		popupOpened.classList.remove('popup_opened');
-
-		document.removeEventListener('keydown', closeKeyPopup);
+		closePopup(popupOpened);
 	}
 };
 
-//Данные, введёные в попап-редакторе, сохраняются в profile
+//Данные, введёные в попап-редакторе
 function dataPopupEdit(event) {
 	if (event.target.classList.contains('popup__form-edit')) {
+		
+		//Данные, введёные в попап-редакторе, сохраняются в profile
 		profileName.textContent = popupEditName.value;
 		profileWorking.textContent = popupEditAboutU.value;
 	}
@@ -43,6 +30,8 @@ function dataPopupEdit(event) {
 	//Переменные name и working профиля присвоили значения в переменные name и working попапа
 	popupEditName.value = profileName.textContent;
 	popupEditAboutU.value = profileWorking.textContent;
+	
+	closePopup(popupEdit);
 };
 
 //Добавление изображения	
@@ -59,10 +48,14 @@ function addImg(event) {
 		});
 		
 		elements.prepend(templateCompleted);
+		
+		closePopup(popupAdd);
 	}
 };
 
-document.addEventListener('click', openPopup);
-document.addEventListener('click', closePopup);
+profileBtnEditPopup.addEventListener('click', () => { openPopup(popupEdit) });
+popupEditBtnClose.addEventListener('click', () => { closePopup(popupEdit) });
+profileBtnAddPopup.addEventListener('click', () => { openPopup(popupAdd) });
+popupAddBtnClose.addEventListener('click', () => { closePopup(popupAdd) });
 document.addEventListener('submit', dataPopupEdit);
 document.addEventListener('submit', addImg);
