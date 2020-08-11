@@ -1,9 +1,18 @@
 //Открытие попапа
 const openPopup = function(popup) {
+	dataPopupEdit();
+	
 	popup.classList.add('popup_opened');	
 	document.addEventListener('keydown', closeKeyPopup);
 };
-		   
+
+//
+function dataPopupEdit() {
+	//Переменные name и working профиля присвоили значения в переменные name и working попапа
+	popupEditName.value = profileName.textContent;
+	popupEditAboutU.value = profileWorking.textContent;
+}
+
 //Закрытие попапа
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
@@ -18,18 +27,13 @@ function closeKeyPopup(event) {
 	}
 };
 
-//Данные, введёные в попап-редакторе
-function dataPopupEdit(event) {
+//Данные, введёные в попап-редакторе, сохраняются в profile
+function saveDataPopupEdit(event) {
 	if (event.target.classList.contains('popup__form-edit')) {
-		
-		//Данные, введёные в попап-редакторе, сохраняются в profile
 		profileName.textContent = popupEditName.value;
 		profileWorking.textContent = popupEditAboutU.value;
 	}
 	
-	//Переменные name и working профиля присвоили значения в переменные name и working попапа
-	popupEditName.value = profileName.textContent;
-	popupEditAboutU.value = profileWorking.textContent;
 	
 	closePopup(popupEdit);
 };
@@ -57,5 +61,5 @@ profileBtnEditPopup.addEventListener('click', () => { openPopup(popupEdit) });
 popupEditBtnClose.addEventListener('click', () => { closePopup(popupEdit) });
 profileBtnAddPopup.addEventListener('click', () => { openPopup(popupAdd) });
 popupAddBtnClose.addEventListener('click', () => { closePopup(popupAdd) });
-document.addEventListener('submit', dataPopupEdit);
+document.addEventListener('submit', saveDataPopupEdit);
 document.addEventListener('submit', addImg);
