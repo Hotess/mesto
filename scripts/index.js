@@ -1,21 +1,20 @@
-const body = document.querySelector('.body');
-const page = document.querySelector('.page');
-const elements = document.querySelector('.elements');
-const profile = document.querySelector('.profile');
-const profileName = document.querySelector('.profile__name');
-const profileWorking = document.querySelector('.profile__working');
-const profileBtnEditPopup = document.querySelector('.profile__edit-button');
-const profileBtnAddPopup = document.querySelector('.profile__add-button');
-const popups = document.querySelectorAll('.popup');
-const popupEdit = document.querySelector('.popup_container_edit');
-const popupEditName = document.querySelector('.popup__item_view_name');
-const popupEditAboutU = document.querySelector('.popup__item_view_about-u');
-const popupAdd = document.querySelector('.popup_container_add');
-const popupAddName = document.querySelector('.popup__item-name-of-img');
-const popupAddLink = document.querySelector('.popup__item-link-for-img');
-const popupAddBtnClose = document.querySelector('.popup_close-add');
-const popupEditBtnClose = document.querySelector('.popup_close-edit');
-const initialCards = [
+export const page = document.querySelector('.page');
+export const elements = document.querySelector('.elements');
+export const profile = document.querySelector('.profile');
+export const profileName = document.querySelector('.profile__name');
+export const profileWorking = document.querySelector('.profile__working');
+export const profileBtnEditPopup = document.querySelector('.profile__edit-button');
+export const profileBtnAddPopup = document.querySelector('.profile__add-button');
+export const popups = document.querySelectorAll('.popup');
+export const popupEdit = document.querySelector('.popup_container_edit');
+export const popupEditName = document.querySelector('.popup__item_view_name');
+export const popupEditAboutU = document.querySelector('.popup__item_view_about-u');
+export const popupAdd = document.querySelector('.popup_container_add');
+export const popupAddName = document.querySelector('.popup__item-name-of-img');
+export const popupAddLink = document.querySelector('.popup__item-link-for-img');
+export const popupAddBtnClose = document.querySelector('.popup_close-add');
+export const popupEditBtnClose = document.querySelector('.popup_close-edit');
+export const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -42,25 +41,31 @@ const initialCards = [
     }
 ];
 
-//Создание templateImg
-function createImgTemplate(imgSrc, imgName) {
-	const template = document.querySelector('#template-element').content.cloneNode(true);
-	const templateElement = template.querySelector('.element');
-	const templateImgName = templateElement.querySelector('.element__text');
-	const templateImgUrl = templateElement.querySelector('.element__img');
-	
-	templateImgUrl.src = imgSrc;
-	templateImgName.textContent = imgName;
-	templateImgUrl.alt = imgName;
-	
-	return templateElement;
-}
-
-//Автоматическое добавление 6-ти карт
-function addAutoSixCards(templateImgName, templateImgUrl) {
+//Автоматическое добавление карт
+function addAutoCards(Сard) {
 	initialCards.forEach(item => {
-		elements.prepend(createImgTemplate(item.link, item.name));
+		const createCard = new Сard(item).generatorCard();
+		
+		elements.prepend(createCard);
 	}); 
 };
 
-addAutoSixCards();
+addAutoCards(Сard);
+
+function popupValidator(FormValidator) {
+	popups.forEach(item => {
+		new FormValidator({
+		  formSelector: 'popup__form',
+		  inputSelector: 'popup__input',
+		  submitButtonSelector: 'popup__button',
+		  inactiveButtonClass: 'popup__button_disabled',
+		  inputErrorClass: 'popup__input-error',
+		  errorClass: 'popup__input-error_visible'
+		}, item).enableValidation();
+	});
+};
+
+popupValidator(FormValidator);
+
+import Сard from './Card.js';
+import FormValidator from './FormValidator.js'; 

@@ -22,7 +22,7 @@ function toggleImg(event) {
 		
 		document.addEventListener('keydown', closeKeyImg);
 		
-		body.prepend(temlateComleted);
+		document.body.prepend(temlateComleted);
 		
 	} else if (pushCloseImg) {
 		event.target.closest('.body').querySelector('.template-modal').remove();
@@ -38,22 +38,6 @@ function closeKeyImg(event) {
 	if (event.key == 'Escape' && temlateCreated) {
 		document.querySelector('.template-modal').remove();
 	}
-}
-
-//Поставить/отменить лайк 
-function toggleLike (event) {
-	if (event.target.classList.contains('element__like')) {
-		event.target.classList.toggle('element__like_active');
-	}
-}; 
-		
-//Удалить изображение
-function removeImg(event) {
-	if (event.target.classList.contains('element__trash')) {
-		event.target.closest('.element').remove();
-	}
 }; 
 	
 document.addEventListener('click', toggleImg);
-document.addEventListener('click', toggleLike);
-document.addEventListener('click', removeImg);
