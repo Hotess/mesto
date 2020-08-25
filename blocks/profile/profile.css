@@ -2,8 +2,9 @@
 @import url("./__info/profile__info.css");
 @import url("./__name/profile__name.css");
 @import url("./__working/profile__working.css");
-@import url("./__edit-button/profile__edit-button.css");
-@import url("./__add-button/profile__add-button.css");
+@import url("./__button/profile__button.css");
+@import url("./__button/_view/_edit/profile__button_view_edit.css");
+@import url("./__button/_view/_add/profile__button_view_add.css");
 
 .profile {
 	display: grid;

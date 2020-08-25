@@ -19,11 +19,11 @@
 					<img src="./images/Pavel.png" alt="Аватарка" class="profile__avatar">
 					<div class="profile__info">
 						<h1 class="profile__name">Павел Ополовнин</h1>
-						<button type="button" aria-label="кнопка-редактирования" class="profile__edit-button profile_button">
+						<button type="button" aria-label="кнопка-редактирования" class="profile__button profile__button_view_edit">
 						</button>
 						<p class="profile__working">Исследователь лени</p>
 					</div>
-					<button type="button" aria-label="кнопка-добавления" class="profile__add-button profile_button">
+					<button type="button" aria-label="кнопка-добавления" class="profile__button profile__button_view_add">
 					</button>
 				</section>
 				<section class="elements">
@@ -33,29 +33,36 @@
 				<p class="footer__text">&copy; 2020 Mesto Russia</p>
 			</footer>
 		</div>
-		<div class="popup popup_container_edit">
-			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-edit"></button>
-			<form method="post" name="popupForm" class="popup__form popup__form-edit" novalidate>
-				<h2 class="popup__title">Редактировать профиль</h2>
-				<input type="text" name="popupName" placeholder="Ваше имя" class="popup__input popup__item_view_name" minlength="2" maxlength="40" required/>
-				<span id="popup__item_view_name-error" class="popup__input-error"></span>
-				<input type="text" name="popupAboutUs" placeholder="Расскажите о себе" class="popup__input popup__item_view_about-u" minlength="2" maxlength="200" required/>
-				<span id="popup__item_view_about-u-error" class="popup__input-error"></span>
-				<button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
-			</form>
+		<div class="popup popup_container_edit"> 
+			<button type="button" aria-label="закрыть попап" class="popup__close popup__close_view_edit"></button> 
+			<form method="post" name="popupForm" class="popup__form popup__form_view_edit" novalidate> 
+				<h2 class="popup__title">Редактировать профиль</h2> 
+				<input type="text" name="popupName" placeholder="Ваше имя" class="popup__input popup__input_view_name" minlength="2" maxlength="40" required/> 
+				<span id="popup__error-name" class="popup__error popup__error_view_name"></span> 
+				<input type="text" name="popupAboutUs" placeholder="Расскажите о себе" class="popup__input popup__input_view_about-u" minlength="2" maxlength="200" required/> 
+				<span id="popup__error-about-u" class="popup__error popup__error_view_about-u"></span> 
+				<button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button> 
+			</form> 
+		</div> 
+		<div class="popup popup_container_add"> 
+			<button type="button" aria-label="закрыть попап" class="popup__close popup__close_view_add"></button> 
+			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form_view_add" novalidate> 
+				<h2 class="popup__title">Новое место</h2> 
+				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__input popup__input_view_name-of-img" minlength="2" maxlength="30" required/> 
+				<span id="popup__error-name-of-img" class="popup__error popup__error_view_name-of-img"></span> 
+				<input type="url" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__input popup__input_view_link-for-img" required/> 
+				<span id="popup__error-link-for-img" class="popup__error popup__error_view_link-for-img"></span> 
+				<button type="submit" class="popup__button " >Создать</button> 
+			</form> 
+		</div>    
+		<div class="modal-image"> 
+			<div class="modal-image__container"> 
+				<button type="button" aria-label="закрыть изображение" class="modal-image__close"></button> 
+				<img src="#" alt="" class="modal-image__img"> 
+				<p class="modal-image__text"></p> 
+			</div> 
 		</div>
-		<div class="popup popup_container_add">
-			<button type="button" aria-label="закрыть попап" class="popup__close popup_close-add"></button>
-			<form method="post" name="popupFormForAddImgs" class="popup__form popup__form-add" novalidate>
-				<h2 class="popup__title">Новое место</h2>
-				<input type="text" name="popupNnameOfImg" placeholder="Название" class="popup__input popup__item-name-of-img" minlength="2" maxlength="30" required/>
-				<span id="popup__item-name-of-img-error" class="popup__input-error"></span>
-				<input type="url" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__input popup__item-link-for-img" required/>
-				<span id="popup__item-link-for-img-error" class="popup__input-error"></span>
-				<button type="submit" class="popup__button popup__button_disabled" disabled>Создать</button>
-			</form>
-		</div>   
-		<template id="template-element">
+		<template id="template-card">
 			<article class="element">
 				<img src="#" alt="" class="element__img">
 				<button type="button" class="element__trash"></button>
@@ -65,18 +72,6 @@
 				</div>
 			</article>
 		</template>
-		<template id="template-element-img">
-			<div class="template-modal">
-				<div class="template-modal__view-img">
-					<button type="button" aria-label="закрыть изображение" class="template-modal__close"></button>
-					<img src="#" alt="" class="template-modal__img">
-					<p class="template-modal__text"></p>
-				</div>
-			</div>
-		</template>
-		<script src="./scripts/index.js"></script>
-		<script src="./scripts/popup.js"></script>
-		<script src="./scripts/initial-cards.js"></script>
-		<script src="./scripts/validate.js"></script>
+		<script type="module" src="./scripts/index.js"></script>
 	</body>
 </html>

@@ -5,7 +5,6 @@
 	margin: 0;
 	justify-self: center;
 	grid-column: 2 span;
-	justify-self: center;
 	text-overflow: ellipsis;
 	max-width: 360px;
 	overflow: hidden;
