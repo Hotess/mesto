@@ -54,79 +54,7 @@ export default class Card {
 		templateImgUrl.alt = this.name;
 		
 		this._setEventListeners(element, templateImgTrash, templateImgLike);
-		this._showImage(templateImgUrl);
 		
 		return element;
-	}
-	
-	//Создание модального изоражения
-	 _createModal(card) {
-		const modal = document.querySelector('.modal-image');
-		const modalContainer = modal.querySelector('.modal-image__container');
-		const modalBtnClose = modal.querySelector('.modal-image__close');
-		const modalImage = modal.querySelector('.modal-image__img');
-		const modalText = modal.querySelector('.modal-image__text');
-		 
-		return { 
-			modal: modal, 
-			img: modalImage,
-			text: modalText,
-			btnClose: modalBtnClose, 
-			contain: modalContainer, 
-		};
-	 }
-	 
-	//данные в модальном изображении
-	_dataModal(card) {
-		const objModal = this._createModal();
-		const cardText = card.closest('.element').querySelector('.element__text');
-		
-		objModal.img.src = card.src;
-		objModal.text.textContent = cardText.textContent;
-	}
-	
-	//Обработчик слушателя модального изображение
-	_setEventListenersShowIimage(card, objModal) {
-		card.addEventListener('click', (event) => {
-			this._dataModal(event.target);
-			this._openedModalImage(objModal.modal);
-		});
-		
-		document.addEventListener('click', (event) => {
-			const pressCloseImg = event.target.classList.contains('modal-image__close') || event.target.classList.contains('modal-image') || event.target.classList.contains('modal-image__container');
-			
-			if	(pressCloseImg) {
-				this._closeModalImage(objModal.modal);
-			}
-		});  
-	}
-	
-	//Закрыть модальное изображение
-	_closeModalImage(modal) {
-		modal.classList.remove('modal-image_opened');
-		
-		document.removeEventListener('keydown', (event) => { this._closeKeyImg(modal) });
-	}
-	
-	//Открыть модальное изображение
-	_openedModalImage(modal) {
-		
-		modal.classList.add('modal-image_opened');
-		
-		document.addEventListener('keydown', (event) => { this._closeKeyImg(modal) });
-	}
-	
-	//Закрытие изображение клавишей Escape
-	_closeKeyImg(modal) {
-		if (event.key == 'Escape' && modal) {
-			this._closeModalImage(modal);
-		};
-	}
-	
-	//Показ изображение
-	_showImage(card) {
-		const objModal = this._createModal();
-		
-		this._setEventListenersShowIimage(card, objModal);
 	}
 };

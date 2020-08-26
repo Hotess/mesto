@@ -52,7 +52,7 @@
 				<span id="popup__error-name-of-img" class="popup__error popup__error_view_name-of-img"></span> 
 				<input type="url" name="popupLinkForImg" placeholder="Ссылка на картину" class="popup__input popup__input_view_link-for-img" required/> 
 				<span id="popup__error-link-for-img" class="popup__error popup__error_view_link-for-img"></span> 
-				<button type="submit" class="popup__button " >Создать</button> 
+				<button type="submit" class="popup__button popup__button_disabled" disabled>Создать</button> 
 			</form> 
 		</div>    
 		<div class="modal-image"> 
@@ -65,7 +65,7 @@
 		<template id="template-card">
 			<article class="element">
 				<img src="#" alt="" class="element__img">
-				<button type="button" class="element__trash"></button>
+				<button type="button" aria-label="удалить карточку" class="element__trash"></button>
 				<div class="element__item">
 					<h2 class="element__text"></h2>
 					<button type="button" aria-label="лайк" class="element__like"></button>

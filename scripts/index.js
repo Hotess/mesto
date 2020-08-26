@@ -1,8 +1,8 @@
+import showImage from './utils/utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js'; 
 
 const elements = document.querySelector('.elements'); 
-const profile = document.querySelector('.profile'); 
 const profileName = document.querySelector('.profile__name'); 
 const profileWorking = document.querySelector('.profile__working'); 
 const profileBtnEditPopup = document.querySelector('.profile__button_view_edit'); 
@@ -46,16 +46,27 @@ const initialCards = [
 ];
 
 //Автоматическое добавление карт
-function addAutoCards(Card) {
+function addAutoCards(element) {
 	initialCards.forEach(item => {
-		const card = new Card(item, 'element');
+		const card = new element(item, 'element');
 		const createCard = card.generatorCard();
-
+		
 		elements.prepend(createCard);
 	}); 
 };
 
 addAutoCards(Card);
+
+//Показ изображение
+function ShowElement() {
+	const cardImage = elements.querySelectorAll('.element__img');
+
+	cardImage.forEach( item => {
+		showImage(item);
+	});
+}
+
+ShowElement();
 
 //Открытие попапа
 const openPopup = function(popup) {
@@ -102,19 +113,14 @@ function addImg() {
 	popupAddName.value = '';
 	popupAddLink.value = '';
 
-	initialCards.push({
-		name: popupAddName.value, 
-		link: popupAddLink.value,
-	});
-console.log(popupAddLink.value);
 	elements.prepend(templateCompleted);
 
 	closePopup(popupAdd);
 };
 
-function popupValidator(FormValidator) {
+function popupValidator(input) {
 	popups.forEach(item => {
-		new FormValidator({
+		new input({
 		  formSelector: 'popup__form',
 		  inputSelector: 'popup__input',
 		  submitButtonSelector: 'popup__button',
