@@ -1,4 +1,4 @@
-# Проект: [Место](https://hotess.github.io/mesto/)
+# Проект: [Место](https://hotess.github.io/mesto/src/)
 
 Описание проекта
 --------------------
