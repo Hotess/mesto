@@ -1,0 +1,12 @@
+.profile__info {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	justify-self: center;
+}
+
+@media (min-width: 1280px) {
+	.profile__info {
+		margin-left: 27px;
+		align-items: center;
+	}
+}

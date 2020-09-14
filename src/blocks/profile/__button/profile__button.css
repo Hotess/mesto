@@ -1,0 +1,11 @@
+.profile__button {
+	user-select: none;
+	background-position: center;
+	transition: opacity .1s ease;
+	outline: none;
+}
+
+.profile__button:hover {
+	cursor: pointer;
+	opacity: .6;
+}

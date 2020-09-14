@@ -1,0 +1,9 @@
+.element__text {
+	flex-basis: 80%;
+	margin: 0;
+	line-height: 29px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow: hidden;
+	user-select: text;
+}

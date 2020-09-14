@@ -1,0 +1,19 @@
+@import url("./__avatar/profile__avatar.css");
+@import url("./__info/profile__info.css");
+@import url("./__name/profile__name.css");
+@import url("./__working/profile__working.css");
+@import url("./__button/profile__button.css");
+@import url("./__button/_view/_edit/profile__button_view_edit.css");
+@import url("./__button/_view/_add/profile__button_view_add.css");
+
+.profile {
+	display: grid;
+	margin-top: 38px;
+}
+
+@media (min-width: 1280px) {
+	.profile {
+		margin-top: 36px;
+		grid-template-columns: auto auto 2fr;
+	}
+}
