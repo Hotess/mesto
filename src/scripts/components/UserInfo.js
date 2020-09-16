@@ -1,24 +1,29 @@
+///** 
+//	* Класс UserInfo
+//	* @constructor
+//	* @param {string} userName - имя пользователя.
+//	* @param {string} userDescription -  деятельность пользователя.
+//*/
 export default class UserInfo {
-	constructor({ name, working }) {
-		this.userName = name;
-		this.userWorking = working;
-		this.profileName = document.querySelector('.profile__name');
-		this.profileWorking = document.querySelector('.profile__working');
+	constructor({ userName, userDescription }) {
+		this.profileName = userName;
+		this.profileWorking = userDescription;
 	}
 	
-	//Отправлять данные в форму в popupEdit
+	/** Отправлять данные в форму в popupEdit */
 	getUserInfo() {
-		return [
-			this.profileName.textContent,
-			this.profileWorking.textContent,
-		];
+		return {
+			profileName: this.profileName.textContent,
+			profileWorking: this.profileWorking.textContent,
+		};
 	}
 	
-	//Установить данные в inputs in popupEdit
-	setUserInfo(popupEditInputs) {
-		popupEditInputs.forEach(input => {
-			this.profileName.textContent = input.popupName;
-			this.profileWorking.textContent = input.popupAboutUs;
-		});
+	/** Установить данные в inputs in popupEdit */
+	setUserInfo(popupEdit) {
+		const popupEditName = popupEdit.querySelector('.popup__input_view_name');
+		const popupEditWorking = popupEdit.querySelector('.popup__input_view_about-u');
+	
+		this.profileName.textContent = popupEditName.value;
+		this.profileWorking.textContent = popupEditWorking.value;
 	}
 }

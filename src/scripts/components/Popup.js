@@ -1,49 +1,51 @@
+/** 
+	* Класс Popup
+	* @constructor
+	* @param {string} containerSelector - попап.
+	* @param {string} button - кнопка профиля.
+*/
 export default class Popup {
 	constructor(containerSelector, button) {
 		this.popup = containerSelector;
-		this.profileButton = button;
+		this.button = button;
+		this._handleEscClose = this._handleEscClose.bind(this);
 	}
 	
-	//Закрытие попапа клавишей Escape
+	/** Закрытие попапа клавишей Escape */
 	_handleEscClose(event) {
-		const popupOpened = this.popup.classList.contains('popup_opened');
-		const escape = event.key == 'Escape';
+		const escape = (event.key == 'Escape');
 		
-		if (escape && popupOpened) {
+		if (escape) {
 			this.close();
 		}
 	}
 	
-	//Обработчик попапа
-	setEventListeners(modifiedOpen, close) {
+	/** Обработчик попапа */
+	setEventListeners(modifiedOpen) {
 		this.popup.addEventListener('click', (event) => {
-			const btnClosePopup = event.target.classList.contains('popup__close');
-			const closePopup = event.target.classList.contains(this.popup.className.split(' ')[1]);
+			const closeElement = (event.target.classList.contains('popup__container') || event.target.classList.contains('popup') || event.target.classList.contains('popup__close'));
 			
-			if (closePopup || btnClosePopup) 
-				this.close();
+			if (closeElement) this.close();
 		});
 		
-		this.profileButton.addEventListener('click', () => {
-			this.open(modifiedOpen);
-		});
-		
-		return this;
+		 (this.button) ? this.button.addEventListener('click', () => {
+			this.open(modifiedOpen); 
+		}) : null;
 	}
 	
-	//Открытие попапа
+	/** Открытие попапа */
 	open(modifiedOpen) {
 		this.popup.classList.add('popup_opened');
+
+		(typeof(modifiedOpen) == 'function') ? modifiedOpen() : null;
 		
-		modifiedOpen();
-		
-		document.addEventListener('keydown', this._handleEscClose.bind(this));
+		document.addEventListener('keydown', this._handleEscClose);
 	}
 	
-	//Закрытие попапа
+	/** Закрытие попапа */
 	close() {
 		this.popup.classList.remove('popup_opened');
 		
-		document.removeEventListener('keydown', this._handleEscClose.bind(this));
+		document.removeEventListener('keydown', this._handleEscClose);
 	}
 }

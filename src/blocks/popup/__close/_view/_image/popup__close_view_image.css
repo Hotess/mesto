@@ -1,23 +1,20 @@
-.modal-image__close {
-	background: url("./../../../images/close-icon.svg") no-repeat;
+
+.popup__close_view_image {
+	background: url("./../../../../../images/close-icon.svg") no-repeat;
 	background-position: center;
-	padding: 0;
 	width: 30px;
 	height: 35px;
-	border: 0;
-	outline: none;
-	cursor: pointer;
 	transition: opacity .1s ease-in-out;
 	align-self: flex-end;
 	margin-right: -35px;
 }
 
-.modal-image__close:hover {
+.popup__close_view_image:hover {
 	opacity: .8;
 }
 
 @media (min-width: 1280px) {
-	.modal-image__close {
+	.popup__close_view_image {
 		width: 40px;
 		height: 40px;
 		margin-right: -40px;

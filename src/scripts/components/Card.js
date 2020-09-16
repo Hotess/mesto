@@ -1,5 +1,13 @@
-//import showImage from './utils/utils.js';
-
+/** 
+	* Класс Card
+	* @constructor
+	* @param {object} item 
+		* param {string} name - название изображения;
+		* param {string} link - ссылка на изображение.
+		
+	* @param {string} template - шаблон.
+	* @param {function} handleCardClick - при клике открывается modalImage. 
+*/
 export default class Card {
 	constructor(item, template, { handleCardClick }) {
 		this.name = item.name;
@@ -8,7 +16,7 @@ export default class Card {
 		this.handleCardClick = handleCardClick;
 	}
 	
-	//Создание шаблона 
+	/** Создание шаблона */
 	_createTemplate() {
 		const template = document
 		.querySelector('#template-card')
@@ -21,44 +29,48 @@ export default class Card {
 		return template;
 	};
 	
-	//Обработчик слушателя для кнопок Like и Trash
+	/** Обработчик слушателя для кнопок Like и Trash */
 	_setEventListeners() {
-    	this.templateImgLike.addEventListener('click', () => {
-			this._toggleLike(this.templateImgLike);
+    	this._templateImgLike.addEventListener('click', () => {
+			this._toggleLike();
 		});
 										 
- 		this.templateImgTrash.addEventListener('click', () => {
-			this._removeImg(this.element);
+ 		this._templateImgTrash.addEventListener('click', () => {
+			this._removeImg();
+		});
+		
+		this._templateImgUrl.addEventListener('click', () => {
+			this.handleCardClick(this._templateImgUrl, this._templateImgName);
 		});
     };
 	
-	//Поставить/отменить лайк
-	_toggleLike(templateImgLike) {
-		this.templateImgLike.classList.toggle('element__like_active');
+	/** Поставить/отменить лайк */
+	_toggleLike() {
+		this._templateImgLike.classList.toggle('element__like_active');
 	};
 		
-	//Удалить изображение
-	_removeImg(element) {
-		this.element.remove();
+	/** Удалить изображение */
+	_removeImg() {
+		this._elementCard.remove();
 	};
 	
-	//Добавление карточки в elements
+	/** Добавление карточки в elements */
 	generatorCard() {
-		//Готовый шаблон
-		this.element = this._createTemplate();
 		
-		const templateImgName = this.element.querySelector('.element__text');
-		const templateImgUrl = this.element.querySelector('.element__img');
-		this.templateImgLike = this.element.querySelector('.element__like');
-		this.templateImgTrash = this.element.querySelector('.element__trash');
+		/** Готовый шаблон */
+		this._elementCard = this._createTemplate();
+		
+		this._templateImgName = this._elementCard.querySelector('.element__text');
+		this._templateImgUrl = this._elementCard.querySelector('.element__img');
+		this._templateImgLike = this._elementCard.querySelector('.element__like');
+		this._templateImgTrash = this._elementCard.querySelector('.element__trash');
 
-		templateImgUrl.src = this.src;
-		templateImgName.textContent = this.name;
-		templateImgUrl.alt = this.name;
+		this._templateImgUrl.src = this.src;
+		this._templateImgName.textContent = this.name;
+		this._templateImgUrl.alt = this.name;
 		
-		this.handleCardClick(templateImgUrl, templateImgName);
 		this._setEventListeners();
 		
-		return this.element;
+		return this._elementCard;
 	}
 };

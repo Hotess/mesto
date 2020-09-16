@@ -9,7 +9,9 @@
 @import url("./../blocks/body/body.css");
 @import url("./../blocks/page/page.css");
 @import url("./../blocks/footer/footer.css");
-@import url("./../blocks/modal-image/modal-image.css");
+@import url("./../blocks/popup/_view/_image/popup_view_image.css");
+@import url("./../blocks/popup/__text/_view/_image/popup__text_view_image.css");
+@import url("./../blocks/popup/__img/_view/_image/popup__img_view_image.css");
+@import url("./../blocks/popup/__close/_view/_image/popup__close_view_image.css");
 @import url("./../blocks/popup/_opened/popup_opened.css");
 @import url("./../blocks/popup/__button/_disabled/popup__button_disabled.css");
-@import url("./../blocks/modal-image/_opened/modal-image_opened.css");

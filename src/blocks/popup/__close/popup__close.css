@@ -1,5 +1,7 @@
 .popup__close {
 	background: url("./../../../images/close-icon.svg") no-repeat;
+	background-position: center;
+	padding: 0;
 	width: 30px;
 	height: 30px;
 	background-position: center;
@@ -10,17 +12,17 @@
 	user-select: none;
 	padding: 0;
 	margin-left: 265px;
+	cursor: pointer;
 }
 
 .popup__close:hover {
-	cursor: pointer;
 	opacity: .6;
 }
 
 @media (min-width: 1280px) {
 	.popup__close {
-		margin-left: 470px;
 		width: 40px;
 		height: 40px;
+		margin-left: 470px;
 	}
 }

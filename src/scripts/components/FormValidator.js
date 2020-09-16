@@ -1,10 +1,21 @@
+/**
+	* Класс FormValidator.
+	* @constructor
+	* param {object} validate
+		* param {string} formSelector - форма;
+		* param {string} inputSelector - ввод поля;
+		* param {string} submitButtonSelector - кнопка;
+		* param {string} inactiveButtonClass - скрыта кнопка;
+		* param {string} inputErrorClass - ошибка;
+		* param {string} errorClass - показ ошибки.
+*/
 export default class FormValidator {
 	constructor(validate, popup) {
 		this.validate = validate; 
 		this.popup = popup; 
 	}
 	
-	//Отмена ошибки после закрытия попапа
+	/** Отмена ошибки после закрытия попапа. */
 	_resetError(errorElement) {
 		this.popup.addEventListener('click', (event) => {
 			if (event.target.classList.contains('popup__close')) {
@@ -14,7 +25,7 @@ export default class FormValidator {
 		});
 	};
 	
-	//Показ ошибки
+	/** Показ ошибки. */
 	_showInputError(inputElement, errorMessage) {
 		const errorElement = this.popup.querySelector(`#popup__error-${inputElement.className.split(' ')[1].slice(18)}`);
 
@@ -24,7 +35,7 @@ export default class FormValidator {
 		this._resetError(errorElement);
 	};
 
-//	//Скрыть ошибку 
+	/** Скрыть ошибку. */
 	_hideInputError(inputElement) {
 		const errorElement = this.popup.querySelector(`#popup__error-${inputElement.className.split(' ')[1].slice(18)}`);
 
@@ -32,7 +43,7 @@ export default class FormValidator {
 		errorElement.textContent = '';
 	};
 
-//	//Показ ошибки/скрыть ошибку при проверке валидации input
+	/** Показ ошибки/скрыть ошибку при проверке валидации input. */
 	_checkInputValidity(inputElement) {
 		if (!inputElement.validity.valid) {
 			this._showInputError(inputElement, inputElement.validationMessage);
@@ -42,14 +53,14 @@ export default class FormValidator {
 		}; 
 	};
 
-//	//Проверка на валидацию inputs
+	/** Проверка на валидацию inputs. */
 	_hasInvalidInput(inputList) {
 		return inputList.some((inputElement) => {
 			return !inputElement.validity.valid;
 		});
 	};
 
-//	//Доступ/запрет кнопки попапа
+	/** Доступ/запрет кнопки попапа. */
 	_toggleButtonState(inputList, buttonElement) {
 		if (this._hasInvalidInput(inputList)) {
 			buttonElement.classList.add(`${this.validate.inactiveButtonClass}`);
@@ -61,7 +72,7 @@ export default class FormValidator {
 		}
 	};
 
-	//Присваивание слушателей inputs
+	/** Присваивание слушателей inputs. */
 	_setEventListeners(buttonElement) {
 		const inputList = Array.from(this.popup.querySelectorAll(`.${this.validate.inputSelector}`));
 		
@@ -75,7 +86,7 @@ export default class FormValidator {
 		});
 	};
 
-	//Включение Валидацию формы
+	/** Включение Валидацию формы. */
 	enableValidation() {
 		const buttonElement = this.popup.querySelector(`.${this.validate.submitButtonSelector}`);
 
@@ -89,12 +100,3 @@ export default class FormValidator {
 		this._setEventListeners(buttonElement);
 	};
 };
-
-//new FormValidator({
-//		  formSelector: 'popup__form',
-//		  inputSelector: 'popup__input',
-//		  submitButtonSelector: 'popup__button',
-//		  inactiveButtonClass: 'popup__button_disabled',
-//		  inputErrorClass: 'popup__input-error',
-//		  errorClass: 'popup__input-error_visible'
-//		}, item).enableValidation();
