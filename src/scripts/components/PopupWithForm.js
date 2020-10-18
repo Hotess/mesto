@@ -12,11 +12,11 @@ import Popup from './Popup.js';
 export default class PopupWithFrom extends Popup {
 	constructor(containerSelector, button, { open, submit }) {
 		super(containerSelector, button);
-		this.popup = containerSelector
-		this.submit = submit;
-		this.modifiedOpen = open;
-		this.inputs = Array.from(this.popup.querySelectorAll('.popup__input'));
+		this.popup = containerSelector;
+		this.inputs = this.popup.querySelectorAll('.popup__input');
 		this._getInputValues = this._getInputValues.bind(this);
+		this.submit = submit.bind(this, this._getInputValues, super.close.bind(this));
+		this.modifiedOpen = open.bind(this, this._getInputValues);
 	}
 	
 	/** Собирает данные из inputs of Popup */
@@ -27,7 +27,6 @@ export default class PopupWithFrom extends Popup {
 		this.inputs.forEach((input, index) => {
 			(input.value)? input.value : input.value = Object.values(valuesOfInputs)[index];
 			values[input.name] = input.value;
-			
 		});
 		
 		collectedValues.push(values);
@@ -35,16 +34,9 @@ export default class PopupWithFrom extends Popup {
 		return collectedValues;
 	}
 	
-	/** обработчик слушателя - отправка данных */ 
-	setEventListeners() {
-		super.setEventListeners(this.modifiedOpen.bind(this, this._getInputValues));
-	
-		this.popup.addEventListener('submit', (event) => {
-			event.preventDefault();
-			
-			this.submit(this._getInputValues, super.close());
-			
-		});
+	/** обработчик слушателя */ 
+	setEventListeners() { 
+		super.setEventListeners(this.modifiedOpen, this.submit);
 	}
 	
 	/** закрытие попапа и очистка данных в inputs */

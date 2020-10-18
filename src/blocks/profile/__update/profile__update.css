@@ -1,0 +1,18 @@
+.profile__update {
+	display: none;
+	background: url('./../../../images/pen.svg') no-repeat;
+	background-size: contain;
+	background-position: center;
+	position: absolute;
+	width: 22%;
+	height: 22%;
+	border: 0;
+	outline: none;
+	padding: 0;
+	cursor: pointer;
+	display: none;
+}
+
+.profile__update:hover {
+	opacity: .8;
+}

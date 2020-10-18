@@ -7,7 +7,7 @@ import Popup from './Popup.js';
 	* @param {function} _handleEscClose - закрытие Escepом.
 */
 export default class PopupWithImage extends Popup {
-	constructor(containerSelector) {
+	constructor(containerSelector,) {
 		super(containerSelector);
 		this.modal = containerSelector;
 	}
@@ -21,8 +21,6 @@ export default class PopupWithImage extends Popup {
 		modalText.textContent = text.textContent;
 		modalImage.alt = text.textContent;
 		
-		super.setEventListeners();
-		
-		return this.modal;
+		super.open();
 	}
 }

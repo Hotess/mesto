@@ -19,18 +19,28 @@ export default class Popup {
 			this.close();
 		}
 	}
-	
+	 
 	/** Обработчик попапа */
-	setEventListeners(modifiedOpen) {
+	setEventListeners(modifiedOpen, submit) {
 		this.popup.addEventListener('click', (event) => {
 			const closeElement = (event.target.classList.contains('popup__container') || event.target.classList.contains('popup') || event.target.classList.contains('popup__close'));
 			
-			if (closeElement) this.close();
+			if (closeElement) this.close(); 
 		});
 		
 		 (this.button) ? this.button.addEventListener('click', () => {
-			this.open(modifiedOpen); 
+			this.open(modifiedOpen);
 		}) : null;
+		
+		this.submitData(submit);
+	}
+	
+	/** Отправка запроса на сервер */
+	submitData(submit) {
+		this.popup.addEventListener('submit', (event) => {
+			event.preventDefault();
+			submit(); 
+		});
 	}
 	
 	/** Открытие попапа */
@@ -43,7 +53,7 @@ export default class Popup {
 	}
 	
 	/** Закрытие попапа */
-	close() {
+	close(disable) {
 		this.popup.classList.remove('popup_opened');
 		
 		document.removeEventListener('keydown', this._handleEscClose);

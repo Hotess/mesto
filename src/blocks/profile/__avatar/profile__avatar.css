@@ -1,8 +1,21 @@
 .profile__avatar {
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	border-radius: 50%;
 	height: 120px;
 	width: 120px;
-	object-fit: cover;
 	justify-self: center;
 	user-select: none;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+}
+
+.profile__avatar:hover .profile__img {
+	opacity: .6;
+}
+
+.profile__avatar:hover .profile__update {
+	display: block;
 }

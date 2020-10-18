@@ -15,3 +15,4 @@
 @import url("./../blocks/popup/__close/_view/_image/popup__close_view_image.css");
 @import url("./../blocks/popup/_opened/popup_opened.css");
 @import url("./../blocks/popup/__button/_disabled/popup__button_disabled.css");
+@import url("./../blocks/popup/__button/_view/_delete/popup__button_view_delete.css");
