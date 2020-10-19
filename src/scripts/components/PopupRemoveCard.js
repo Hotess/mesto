@@ -14,7 +14,7 @@ export default class PopupRemoveCard extends Popup {
 		/** обработчик слушателя */ 
 	setEventListeners(removeCard) {
 		super.open();
-		super.setEventListeners('', this.submit.bind(this, super.close.bind(this), removeCard), true);
+		super.setEventListeners('', this.submit.bind(this, super.close.bind(this), removeCard));
 	}
 }
 	

@@ -23,8 +23,8 @@ export default class Section {
 	
 	/** Перебор массива */
 	renderItems() {
-		this._items.forEach((item, index) => {
-			this._renderer(item, index);
+		this._items.forEach((item, index, array) => {
+			this._renderer(item, index, array);
 		});
 	}
 }

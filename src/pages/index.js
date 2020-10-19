@@ -63,12 +63,7 @@ const loading = function(bool, button, option, closePopup) {
 }
 
 /** Получение данные из сервера */
-const updateProfile = api.methodApi({
-	url: 'users/me', 
-	parameters: { 
-		method: 'GET'
-	}
-}).then(res => {
+const updateProfile = api.getProfile().then(res => {
 	return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 }).then(res => {
 	profileImg.src = res.avatar; 
@@ -80,7 +75,7 @@ const popupDeleteMyCard = new PopupRemoveCard(popupDeleteCard, {
 	
 	/** Запрос на удаления карточки на сервер */
 	submit: (close, removeCard) => {
-		removeCard(); 
+		removeCard();
 		close();
 	}
 });
@@ -97,11 +92,9 @@ const card = function(item) {
 		/**  Поставить/убрать лайк */
 		handleLikeCard: (stateLike, apiItemImage, activeLike, deactiveLike) => {
 			if (stateLike) {
-				return api.methodApi({
-					url: `cards/likes/${apiItemImage}`, 
-					parameters: { 
-						method: 'DELETE', 
-					}
+				return api.toggleLike({
+					url: apiItemImage, 
+					method: 'DELETE' 
 				}).then(res => {
 					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				}).then(res => { 
@@ -109,11 +102,9 @@ const card = function(item) {
 				});
 				
 			} else {			
-				return api.methodApi({ 
-					url: `cards/likes/${apiItemImage}`, 
-					parameters: { 
-						method: 'PUT'
-					}
+				return api.toggleLike({ 
+					url: apiItemImage, 
+					method: 'PUT'
 				}).then(res => {
 					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				}).then(res => { 
@@ -123,35 +114,30 @@ const card = function(item) {
 		},
 		
 		/** Удаление карточки */
-		handleDeleteIconClick: (removeCard, apiItemImage) => {
+		handleDeleteIconClick: (removeCard) => {;
 			popupDeleteMyCard.setEventListeners(removeCard.bind(null, api));
 		}
   
 	}).generatorCard();
 		
-	return tempateCard;
+	return tempateCard
 }
 
 /** Автоматическое добалвение карточек */
 const apiCreateCards = function() {
-	api.methodApi({ 
-		url: 'cards', 
-		parameters: { 
-			method: 'GET'
-		}
-	}).then(res => {
+	api.getInitialCards().then(res => {
 		return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-	}).then(res => { 
+	}).then(res => {
 		const inElements = new Section({ items: res,
 			renderer: (item) => {
 				const cardElement = card(item);
-
+				
 				inElements.addItem(cardElement, item);
 			}
 		}, elements);
 
 		 inElements.renderItems();
-	});
+	})
 }
 
 apiCreateCards();
@@ -162,23 +148,13 @@ const createdPopupEditForm = new PopupWithForm(popupEdit, profileBtnEditPopup, {
 	/** Открытие попапа  */
 	open: (gotValues) => { 
 		return gotValues(profile.getUserInfo());
-		
 	}, 
 	
 	/** Отправка данных профиля на сервер */
 	submit: (gotValues, close) => {
-		api.methodApi({ 
-			url: 'users/me', 
-			parameters: { 
-				method: 'PATCH',
-				body: JSON.stringify({ 
-					name: popupEditName.value, 
-					about: popupEditaboutU.value 
-				}),
-				headers: {
-					ContentType: 'application/json'
-				}
-			}
+		api.setProfile({ 
+			name: popupEditName.value, 
+			about: popupEditaboutU.value 
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 		}).then((res) => {
@@ -211,15 +187,10 @@ const createdPopupAddForm = new PopupWithForm(popupAdd, profileBtnAddPopup, {
 			renderer: (item) => {
 				const image = { name: item.popupNameOfImg, link: item.popupLinkForImg };
 				
-				api.methodApi({ 
-					url: 'cards', 
-					parameters: { 
-						method: 'POST',
-						body: JSON.stringify({ name: image.name, link: image.link }),
-						headers: {
-							ContentType: 'application/json'
-						}
-					}
+				api.setImage({
+					url: image.link,
+					name: image.name, 
+					link: image.link,
 				}).then(res => {
 					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				}).then((res) => { 
@@ -254,37 +225,20 @@ const popupAvatar = new PopupWithForm(popupUpdateAvatar, profileBtnUpdate, {
 	
 	/** Отправка изображение на аватар на сервер */
 	submit: (gotValues) => {
-		const [image] = gotValues();
+		const [image] = gotValues(); image.popupUpdateImage
 		
-		fetch(image.popupUpdateImage).then((res) => {
-			if (res.ok) {
-				return api.methodApi({ 
-					url: 'users/me/avatar', 
-					parameters: { 
-						method: 'PATCH',
-						body: JSON.stringify({ avatar: image.popupUpdateImage }),
-						headers: {
-							ContentType: 'application/json'
-						}
-					}
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-				}).then(res => { 
-					setTimeout(() => {
-						profileImg.src = res.avatar;
-					}, 500);
+		api.setAvatar(image.popupUpdateImage).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).then(res => { 
+			setTimeout(() => {
+				profileImg.src = res.avatar;
+			}, 500);
 			
-					loading(false, buttonUpdate, 'Сохранение...');
-				}).then(() => {
-					setTimeout(() => {
-						loading(true, buttonUpdate, 'Сохранение', popupAvatar.close());
-					}, 500);
-				});
-			}
-			
-			alert('Такой ссылки не существует');
-			
-			return Promise.reject(`Такой ссылки нет. Ошибка: ${res.status}`);
+			loading(false, buttonUpdate, 'Сохранение...');
+		}).then(() => {
+			setTimeout(() => {
+				loading(true, buttonUpdate, 'Сохранение', popupAvatar.close());
+			}, 500);
 		});
 	}
 });

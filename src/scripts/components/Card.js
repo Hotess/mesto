@@ -10,10 +10,7 @@
 */
 export default class Card {
 	constructor(item, template, { handleCardClick, handleLikeCard, handleDeleteIconClick }) {
-		this.name = item.name;
-		this.src = item.link;
-		this.nameId = item.owner ? item.owner._id : null;
-		this.imageId = item._id ? item._id : null;
+		this.item = item;
 		this.countLike = item.likes ? item.likes : '0';
 		this.element = template;
 		this.handleCardClick = handleCardClick;
@@ -48,8 +45,8 @@ export default class Card {
 		});
 		
 		this._templateImgTrash.addEventListener('click', () => {
-			this.handleDeleteIconClick(this._deleteCard.bind(this), this.imageId);
-		})
+			this.handleDeleteIconClick(this._deleteCard.bind(this));
+		});
     };
 	
 	/** Поставить лайк */
@@ -66,17 +63,15 @@ export default class Card {
 	
 	/** Удаление карточки */
 	_deleteCard(api) {
-		api.methodApi({
-			url: `cards/${this.imageId}`, 
-			parameters: { 
-				method: 'DELETE',
-			} 
-		}).then(res => {
-			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).then(res => {
-			this._elementCard.remove();
-			this._elementCard = null;
-		});
+		if (this.item._id) {
+			api.deleteCard(this.item._id).then(res => {
+				return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+			}).then(res => {
+				this.item._id = null;
+				this._elementCard.remove();
+				this._elementCard = null;
+			});
+		}
 	}
 		
 	/** Добавление карточки в elements */
@@ -91,12 +86,12 @@ export default class Card {
 		this._templateImgTrash = this._elementCard.querySelector('.element__trash');
 		this._elementCountLike = this._elementCard.querySelector('.element__count');
 		
-		this._templateImgUrl.src = this.src;
-		this._templateImgName.textContent = this.name;
-		this._templateImgUrl.alt = this.name;
+		this._templateImgUrl.src = this.item.link;
+		this._templateImgName.textContent = this.item.name;
+		this._templateImgUrl.alt = this.item.name;
 		this._elementCountLike.textContent = this.countLike.length;
 		
-		if (this.nameId == 'f6ed0e886b4c3e1510af9061') {
+		if (this.item.owner._id == 'f6ed0e886b4c3e1510af9061') {
 			this._templateImgTrash.classList.add('element__trash_active'); 
 		}
 
