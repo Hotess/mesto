@@ -16,6 +16,12 @@ export default class Api {
     		headers: {
       			authorization: this.token
 			}
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(res => {
+			alert(`Ошибка: ${res.status}` );
+			
+			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -33,8 +39,10 @@ export default class Api {
 						'Content-type': 'application/json; charset=UTF-8',
 						authorization: this.token
 					}
+				}).then(res => {
+					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				});
-			} 
+			}
 			
 			alert('Такой ссылки не существует');
 			
@@ -49,7 +57,13 @@ export default class Api {
 			headers: {
 				authorization: this.token
 			}
-		})
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(res => {
+			alert(`Ошибка: ${res.status}` );
+			
+			return Promise.reject(`Ошибка: ${res.status}`);
+		});
 	}
 	
 	/** Поставить/убрать лайк */
@@ -59,6 +73,12 @@ export default class Api {
 				headers: {
 				authorization: this.token,
 			},
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(res => {
+			alert(`Ошибка: ${res.status}` );
+			
+			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -73,7 +93,13 @@ export default class Api {
 				headers: {
 				authorization: this.token,
 				'Content-Type': 'application/json'
-			},
+			}
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(res => {
+			alert(`Ошибка: ${res.status}` );
+			
+			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -83,6 +109,12 @@ export default class Api {
 			headers: {
 				authorization: this.token
 			},
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(res => {
+			alert(`Ошибка: ${res.status}` );
+			
+			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -97,6 +129,8 @@ export default class Api {
 						authorization: this.token,
 						'Content-Type': 'application/json'
 					}
+				}).then(res => {
+					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				});
 			}
 			

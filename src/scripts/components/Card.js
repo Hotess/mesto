@@ -37,7 +37,7 @@ export default class Card {
 	_setEventListeners() {
     	this._templateImgLike.addEventListener('click', () => {
 			const stateLike = this._templateImgLike.classList.contains('element__like_active');
-				this.handleLikeCard(stateLike, this.imageId, this._setLike, this._deleteLike);
+				this.handleLikeCard(stateLike, this.item._id, this._setLike, this._deleteLike);
 		});
 												
 		this._templateImgUrl.addEventListener('click', () => {
@@ -64,9 +64,7 @@ export default class Card {
 	/** Удаление карточки */
 	_deleteCard(api) {
 		if (this.item._id) {
-			api.deleteCard(this.item._id).then(res => {
-				return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-			}).then(res => {
+			api.deleteCard(this.item._id).then(() => {
 				this.item._id = null;
 				this._elementCard.remove();
 				this._elementCard = null;

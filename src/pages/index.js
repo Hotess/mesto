@@ -64,8 +64,6 @@ const loading = function(bool, button, option, closePopup) {
 
 /** Получение данные из сервера */
 const updateProfile = api.getProfile().then(res => {
-	return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-}).then(res => {
 	profileImg.src = res.avatar; 
 	profile.setUserInfo({ name: res.name, about: res.about });
 });
@@ -95,9 +93,7 @@ const card = function(item) {
 				return api.toggleLike({
 					url: apiItemImage, 
 					method: 'DELETE' 
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-				}).then(res => { 
+				}).then(() => { 
 					deactiveLike();
 				});
 				
@@ -105,9 +101,7 @@ const card = function(item) {
 				return api.toggleLike({ 
 					url: apiItemImage, 
 					method: 'PUT'
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-				}).then(res => { 
+				}).then(() => { 
 					activeLike();
 				});
 			}
@@ -125,9 +119,7 @@ const card = function(item) {
 
 /** Автоматическое добалвение карточек */
 const apiCreateCards = function() {
-	api.getInitialCards().then(res => {
-		return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-	}).then(res => {
+	api.getInitialCards().then(res => { 
 		const inElements = new Section({ items: res,
 			renderer: (item) => {
 				const cardElement = card(item);
@@ -155,8 +147,6 @@ const createdPopupEditForm = new PopupWithForm(popupEdit, profileBtnEditPopup, {
 		api.setProfile({ 
 			name: popupEditName.value, 
 			about: popupEditaboutU.value 
-		}).then(res => {
-			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 		}).then((res) => {
 			setTimeout(() => {
 				profile.setUserInfo({ name: res.name, about: res.about });
@@ -191,8 +181,6 @@ const createdPopupAddForm = new PopupWithForm(popupAdd, profileBtnAddPopup, {
 					url: image.link,
 					name: image.name, 
 					link: image.link,
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 				}).then((res) => { 
 					setTimeout(() => {
 						const cardElement = card(res);
@@ -227,9 +215,7 @@ const popupAvatar = new PopupWithForm(popupUpdateAvatar, profileBtnUpdate, {
 	submit: (gotValues) => {
 		const [image] = gotValues(); image.popupUpdateImage
 		
-		api.setAvatar(image.popupUpdateImage).then(res => {
-			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).then(res => { 
+		api.setAvatar(image.popupUpdateImage).then(res => { 
 			setTimeout(() => {
 				profileImg.src = res.avatar;
 			}, 500);
