@@ -23,28 +23,18 @@ export default class Api {
 	
 	/** Добавить карточку */
 	setImage(item) {
-		return fetch(`${item.url}`).then((res) => {
-			if (res.ok) {
-				return fetch(`${this.url}cards`, {
-					method: 'POST',
-					body: JSON.stringify({ 
-						name: item.name, 
-						link: item.link,
-					}),
-					headers: {
-						'Content-type': 'application/json; charset=UTF-8',
-						authorization: this.token
-					}
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-				});
+		return fetch(`${this.url}cards`, {
+			method: 'POST',
+			body: JSON.stringify({ 
+				name: item.name, 
+				link: item.link,
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+				authorization: this.token
 			}
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(error => {
-			alert('Ошибка: Такой ссылки не существует')
-			
-			console.log(error);
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -102,25 +92,15 @@ export default class Api {
 	
 	/** Установить изображение на аватарку */
 	setAvatar(image) {
-		return fetch(`${image}`).then((res) => {
-			if (res.ok) {
-				return fetch(`${this.url}users/me/avatar`, {
-					method: 'PATCH',
-					body: JSON.stringify({ avatar: image }),
-					headers: {
-						authorization: this.token,
-						'Content-Type': 'application/json'
-					}
-				}).then(res => {
-					return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-				});
+		return fetch(`${this.url}users/me/avatar`, {
+			method: 'PATCH',
+			body: JSON.stringify({ avatar: image }),
+			headers: {
+				authorization: this.token,
+				'Content-Type': 'application/json'
 			}
-			
-			return Promise.reject(`Такой ссылки нет. Ошибка: ${res.status}`);
-		}).catch(error => {
-			alert('Ошибка: Такой ссылки не существует');
-			
-			console.log(error);
+		}).then(res => {
+			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 }

@@ -123,7 +123,7 @@ const apiCreateCards = new Promise((resolve, reject) => {
 /** Получение данные из сервера */
 const updateProfile = new Promise((resolve, reject) => {
 	api.getProfile().then(res => {
-		profile.setUserInfo({ name: res.name, about: res.about, image: res.avatar});
+		profile.setUserInfo({ name: res.name, about: res.about, image: res.avatar });
 	}).then((res) => {
 		return resolve('Данные профиля загрузились');
 	}).catch((error) => {
