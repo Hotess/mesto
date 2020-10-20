@@ -24,13 +24,20 @@ export default class PopupWithFrom extends Popup {
 		const collectedValues = [];
 		const values = {};
 		
-		this.inputs.forEach((input, index) => {
-			(input.value)? input.value : input.value = Object.values(valuesOfInputs)[index];
+		this.inputs.forEach((input, index, array) => {
+			if (valuesOfInputs) {
+				array[0].value = valuesOfInputs.profileName;
+				array[1].value = valuesOfInputs.profileWorking;
+
+				values[input.name] = input.value;
+				values[input.name] = input.value;
+			}
+			
 			values[input.name] = input.value;
 		});
 		
 		collectedValues.push(values);
-		
+
 		return collectedValues;
 	}
 	

@@ -68,6 +68,8 @@ export default class Card {
 				this.item._id = null;
 				this._elementCard.remove();
 				this._elementCard = null;
+			}).catch(error => {
+				console.log(error);
 			});
 		}
 	}

@@ -18,10 +18,6 @@ export default class Api {
 			}
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(res => {
-			alert(`Ошибка: ${res.status}` );
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -44,9 +40,11 @@ export default class Api {
 				});
 			}
 			
-			alert('Такой ссылки не существует');
+			return Promise.reject(`Ошибка: ${res.status}`);
+		}).catch(error => {
+			alert('Ошибка: Такой ссылки не существует')
 			
-			return Promise.reject(`Такой ссылки нет. Ошибка: ${res.status}`);
+			console.log(error);
 		});
 	}
 	
@@ -59,10 +57,6 @@ export default class Api {
 			}
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(res => {
-			alert(`Ошибка: ${res.status}` );
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -75,10 +69,6 @@ export default class Api {
 			},
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(res => {
-			alert(`Ошибка: ${res.status}` );
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -96,10 +86,6 @@ export default class Api {
 			}
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(res => {
-			alert(`Ошибка: ${res.status}` );
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
 		});
 	}
 	
@@ -111,11 +97,7 @@ export default class Api {
 			},
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		}).catch(res => {
-			alert(`Ошибка: ${res.status}` );
-			
-			return Promise.reject(`Ошибка: ${res.status}`);
-		});
+		})
 	}
 	
 	/** Установить изображение на аватарку */
@@ -134,9 +116,11 @@ export default class Api {
 				});
 			}
 			
-			alert('Такой ссылки не существует');
-			
 			return Promise.reject(`Такой ссылки нет. Ошибка: ${res.status}`);
+		}).catch(error => {
+			alert('Ошибка: Такой ссылки не существует');
+			
+			console.log(error);
 		});
 	}
 }
