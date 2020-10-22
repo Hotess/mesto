@@ -30,6 +30,8 @@ import Section from './../components/Section.js';
 import Api from './../components/Api.js';
 import PopupRemoveCard from './../components/PopupRemoveCard.js';
 
+let myId = '';
+
 /** Валидация формы popupEdit */
 const editFormValidator = new FormValidator(formConfig, popupEdit).enableValidation();
 
@@ -60,7 +62,7 @@ const loading = function(bool, button, option) {
 
 /** Шаблон карточки */
 const createCard = function(item) {
-	const tempateCard = new Card(item, 'element', { 
+	const tempateCard = new Card(item, myId, 'element', { 
 		
 		/**  Открывается при клике modalImage */
 		handleCardClick: (elementImg, elementName) => {
@@ -120,10 +122,14 @@ const apiCreateCards = new Promise((resolve, reject) => {
 	});
 });
 
+
+
 /** Получение данные из сервера */
 const updateProfile = new Promise((resolve, reject) => {
 	api.getProfile().then(res => {
 		profile.setUserInfo({ name: res.name, about: res.about, image: res.avatar });
+		
+		myId = res._id;
 	}).then(() => {
 		return resolve('Данные профиля загрузились');
 	}).catch((error) => {
@@ -132,7 +138,7 @@ const updateProfile = new Promise((resolve, reject) => {
 });
 
 const dataOfServer = [updateProfile, apiCreateCards];
-console.log(dataOfServer)
+
 /** Синхоранная прогзрука данных профиля и карточек с сервера  */
 Promise.all(dataOfServer).then((result) => {
 	return (result[0]) ? result[1] : result;

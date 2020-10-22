@@ -23,7 +23,7 @@ export default class PopupWithFrom extends Popup {
 	
 /** Собирает данные из inputs of Popup */
 	_getInputValues() {
-		const collectedValues = []
+		const collectedValues = [];
 		
 		this.inputs.forEach((input, index, array) => {
 			this.inputsValues[input.name] = input.value;
@@ -35,7 +35,7 @@ export default class PopupWithFrom extends Popup {
 	}
 	
 	setInputValues(valuesOfInputs) {
-		const collectedValues = []
+		const collectedValues = [];
 		
 		const data = Object.values(valuesOfInputs);
 			

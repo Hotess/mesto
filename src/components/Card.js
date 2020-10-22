@@ -9,10 +9,10 @@
 	* @param {function} handleCardClick - при клике открывается modalImage. 
 */
 export default class Card {
-	constructor(item, template, { handleCardClick, handleLikeCard, handleDeleteIconClick }) {
+	constructor(item, myId, template, { handleCardClick, handleLikeCard, handleDeleteIconClick }) {
 		this.image = item;
 		this.usersId = item.owner._id;
-		this.myId = 'f6ed0e886b4c3e1510af9061';
+		this.myId = myId;
 		this.countLike = item.likes ? item.likes : '0';
 		this.element = template;
 		this.handleCardClick = handleCardClick;
