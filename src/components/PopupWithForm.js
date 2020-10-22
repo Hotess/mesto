@@ -23,16 +23,20 @@ export default class PopupWithFrom extends Popup {
 	
 /** Собирает данные из inputs of Popup */
 	_getInputValues() {
+		const collectedValues = []
+		
 		this.inputs.forEach((input, index, array) => {
 			this.inputsValues[input.name] = input.value;
 		});
 		
-		this.collectedValues.push(this.inputsValues);
+		collectedValues.push(this.inputsValues);
 
-		return this.collectedValues;
+		return collectedValues;
 	}
 	
 	setInputValues(valuesOfInputs) {
+		const collectedValues = []
+		
 		const data = Object.values(valuesOfInputs);
 			
 		this.inputs.forEach((input, index, array) => {
@@ -40,9 +44,9 @@ export default class PopupWithFrom extends Popup {
 			array[index].value = this.inputsValues[input.name];
 		});
 		
-		this.collectedValues.push(this.inputsValues);
+		collectedValues.push(this.inputsValues);
 
-		return this.collectedValues;
+		return collectedValues;
 	}
 	
 	/** обработчик слушателя */ 

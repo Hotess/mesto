@@ -132,7 +132,7 @@ const updateProfile = new Promise((resolve, reject) => {
 });
 
 const dataOfServer = [updateProfile, apiCreateCards];
-
+console.log(dataOfServer)
 /** Синхоранная прогзрука данных профиля и карточек с сервера  */
 Promise.all(dataOfServer).then((result) => {
 	return (result[0]) ? result[1] : result;
