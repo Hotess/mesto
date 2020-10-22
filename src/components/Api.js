@@ -87,7 +87,7 @@ export default class Api {
 			},
 		}).then(res => {
 			return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-		})
+		});
 	}
 	
 	/** Установить изображение на аватарку */

@@ -61,7 +61,7 @@ const loading = function(bool, button, option) {
 /** Шаблон карточки */
 const createCard = function(item) {
 	const tempateCard = new Card(item, 'element', { 
-
+		
 		/**  Открывается при клике modalImage */
 		handleCardClick: (elementImg, elementName) => {
 			createdPopupImage.open(elementImg, elementName);
@@ -92,8 +92,8 @@ const createCard = function(item) {
 		},
 		
 		/** Удаление карточки */
-		handleDeleteIconClick: (removeCard) => {
-			popupDeleteMyCard.setEventListeners(removeCard.bind(null, api));
+		handleDeleteIconClick: (removeCard, imageId) => {
+			popupDeleteMyCard.getData(removeCard, imageId);
 		}
   
 	}).generatorCard();
@@ -113,7 +113,7 @@ const apiCreateCards = new Promise((resolve, reject) => {
 		}, elements);
 
 		 inElements.renderItems();
-	}).then((res) => {
+	}).then(() => {
 		return resolve('Карточки загрузились');
 	}).catch((error) => {
 		return reject(error);
@@ -124,7 +124,7 @@ const apiCreateCards = new Promise((resolve, reject) => {
 const updateProfile = new Promise((resolve, reject) => {
 	api.getProfile().then(res => {
 		profile.setUserInfo({ name: res.name, about: res.about, image: res.avatar });
-	}).then((res) => {
+	}).then(() => {
 		return resolve('Данные профиля загрузились');
 	}).catch((error) => {
 		return reject(error);
@@ -148,18 +148,24 @@ Promise.all(dataOfServer).then((result) => {
 const popupDeleteMyCard = new PopupRemoveCard(popupDeleteCard, {
 	
 	/** Запрос на удаления карточки на сервер */
-	submit: (close, removeCard) => {
-		removeCard();
-		close();
+	submit: (close, removeCard, imageId) => {
+		api.deleteCard(imageId).then(() => {
+			removeCard();
+			close();
+		}).catch(error => {
+			console.log(error);
+		});
 	}
 });
+
+popupDeleteMyCard.setEventListeners();
 
 /** Создание формы editPopup */
 const createdPopupEditForm = new PopupWithForm(popupEdit, profileBtnEditPopup, {
 	
 	/** Открытие попапа  */
-	open: (gotValues) => { 
-		return gotValues(profile.getUserInfo());
+	open: (setInputValues) => {
+		return setInputValues(profile.getUserInfo());
 	}, 
 	
 	/** Отправка данных профиля на сервер */

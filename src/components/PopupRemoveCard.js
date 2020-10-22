@@ -11,10 +11,16 @@ export default class PopupRemoveCard extends Popup {
 		this.submit = submit;
 	}
 	
-		/** обработчик слушателя */ 
-	setEventListeners(removeCard) {
+	getData(removeCard, imageId) {
 		super.open();
-		super.setEventListeners('', this.submit.bind(this, super.close.bind(this), removeCard));
+		
+		this.removeCard = removeCard;
+		this.imageId = imageId;
+	}
+		/** обработчик слушателя */ 
+	setEventListeners(data) {
+		super.setEventListeners('', () => {
+			this.submit(super.close.bind(this), this.removeCard, this.imageId);
+		});
 	}
 }
-	

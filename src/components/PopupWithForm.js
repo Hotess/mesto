@@ -14,31 +14,35 @@ export default class PopupWithFrom extends Popup {
 		super(containerSelector, button);
 		this.popup = containerSelector;
 		this.inputs = this.popup.querySelectorAll('.popup__input');
+		this.inputsValues = {};
+		this.collectedValues = [];
 		this._getInputValues = this._getInputValues.bind(this);
 		this.submit = submit.bind(this, this._getInputValues, super.close.bind(this));
-		this.modifiedOpen = open.bind(this, this._getInputValues);
+		this.modifiedOpen = open.bind(this, this.setInputValues.bind(this));
 	}
 	
-	/** Собирает данные из inputs of Popup */
-	_getInputValues(valuesOfInputs) {
-		const collectedValues = [];
-		const values = {};
-		
+/** Собирает данные из inputs of Popup */
+	_getInputValues() {
 		this.inputs.forEach((input, index, array) => {
-			if (valuesOfInputs) {
-				array[0].value = valuesOfInputs.profileName;
-				array[1].value = valuesOfInputs.profileWorking;
-
-				values[input.name] = input.value;
-				values[input.name] = input.value;
-			}
-			
-			values[input.name] = input.value;
+			this.inputsValues[input.name] = input.value;
 		});
 		
-		collectedValues.push(values);
+		this.collectedValues.push(this.inputsValues);
 
-		return collectedValues;
+		return this.collectedValues;
+	}
+	
+	setInputValues(valuesOfInputs) {
+		const data = Object.values(valuesOfInputs);
+			
+		this.inputs.forEach((input, index, array) => {
+			this.inputsValues[input.name] = data[index];
+			array[index].value = this.inputsValues[input.name];
+		});
+		
+		this.collectedValues.push(this.inputsValues);
+
+		return this.collectedValues;
 	}
 	
 	/** обработчик слушателя */ 

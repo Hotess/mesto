@@ -10,7 +10,9 @@
 */
 export default class Card {
 	constructor(item, template, { handleCardClick, handleLikeCard, handleDeleteIconClick }) {
-		this.item = item;
+		this.image = item;
+		this.usersId = item.owner._id;
+		this.myId = 'f6ed0e886b4c3e1510af9061';
 		this.countLike = item.likes ? item.likes : '0';
 		this.element = template;
 		this.handleCardClick = handleCardClick;
@@ -37,7 +39,7 @@ export default class Card {
 	_setEventListeners() {
     	this._templateImgLike.addEventListener('click', () => {
 			const stateLike = this._templateImgLike.classList.contains('element__like_active');
-				this.handleLikeCard(stateLike, this.item._id, this._setLike, this._deleteLike);
+				this.handleLikeCard(stateLike, this.image._id, this._setLike, this._deleteLike);
 		});
 												
 		this._templateImgUrl.addEventListener('click', () => {
@@ -45,7 +47,7 @@ export default class Card {
 		});
 		
 		this._templateImgTrash.addEventListener('click', () => {
-			this.handleDeleteIconClick(this._deleteCard.bind(this));
+			this.handleDeleteIconClick(this._deleteCard.bind(this), this.image._id);
 		});
     };
 	
@@ -63,15 +65,7 @@ export default class Card {
 	
 	/** Удаление карточки */
 	_deleteCard(api) {
-		if (this.item._id) {
-			api.deleteCard(this.item._id).then(() => {
-				this.item._id = null;
-				this._elementCard.remove();
-				this._elementCard = null;
-			}).catch(error => {
-				console.log(error);
-			});
-		}
+		this._elementCard.remove()
 	}
 		
 	/** Добавление карточки в elements */
@@ -86,17 +80,17 @@ export default class Card {
 		this._templateImgTrash = this._elementCard.querySelector('.element__trash');
 		this._elementCountLike = this._elementCard.querySelector('.element__count');
 		
-		this._templateImgUrl.src = this.item.link;
-		this._templateImgName.textContent = this.item.name;
-		this._templateImgUrl.alt = this.item.name;
+		this._templateImgUrl.src = this.image.link;
+		this._templateImgName.textContent = this.image.name;
+		this._templateImgUrl.alt = this.image.name;
 		this._elementCountLike.textContent = this.countLike.length;
 		
-		if (this.item.owner._id == 'f6ed0e886b4c3e1510af9061') {
+		if (this.usersId == this.myId) {
 			this._templateImgTrash.classList.add('element__trash_active'); 
 		}
 
 		this.countLike.forEach((item) => {
-			if (item._id == 'f6ed0e886b4c3e1510af9061') {
+			if (item._id == this.myId) {
 				this._templateImgLike.classList.add('element__like_active');
 			};
 		});
